@@ -56,9 +56,11 @@ class UserResource extends Resource
                         ->default(now()),
 
                 Forms\Components\TextInput::make('password')
+                        ->label('Password (Cannot be Changed)')
                         ->password()
-                        ->autocomplete('new-password')
-                        ->minlength(8)
+                        ->required(fn (string $operation) => $operation === 'create')
+                        ->disabled(fn (string $operation) => $operation === 'edit')
+                        ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
                         ->revealable(),
             ]);
     }
@@ -79,6 +81,14 @@ class UserResource extends Resource
 
                 Tables\Columns\TextColumn::make('no_telp')
                         ->label('No Telepon'),
+
+                Tables\Columns\BooleanColumn::make('email_verified_at')
+                        ->label('Email Verified')
+                        ->trueIcon('heroicon-o-shield-check')
+                        ->falseIcon('heroicon-o-x-circle')
+                        ->trueColor('success')
+                        ->falseColor('danger')
+                        ->getStateUsing(fn ($record) => $record->email_verified_at !== null),
             ])
             ->filters([
                 //
