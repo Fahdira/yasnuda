@@ -10,5 +10,13 @@ class Contact extends Model
     use HasFactory;
 
     protected $table = 'contact';
+    protected $primaryKey = 'id_contact';
+    public $incrementing = true;
+
+    protected $fillable = [
+        'nama',
+        'no_telp',
+        'bagian',
+    ];
 
 }

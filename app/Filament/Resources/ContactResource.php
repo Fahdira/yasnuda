@@ -23,10 +23,9 @@ class ContactResource extends Resource
         return 5; // The lower the number, the higher it appears in the sidebar
     }
 
-    public static function getNavigationLabel(): string
-    {
-        return 'Contact'; // Custom title for the sidebar
-    }
+    protected static ?string $navigationLabel = 'Informasi Kontak';
+
+    protected static ?string $modelLabel = 'Contact';
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
@@ -34,7 +33,24 @@ class ContactResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('nama')
+                        ->label('Nama')
+                        ->required()
+                        ->maxLength(255),
+
+                Forms\Components\TextInput::make('no_telp')
+                        ->required()
+                        ->label('No. Telepon')
+                        ->prefix('+62'),
+
+                Forms\Components\Select::make('bagian')
+                        ->label('Penanggung Jawab')
+                        ->options([
+                            'MDTA Nuurul Hudaa' => 'MDTA Nuurul Hudaa',
+                            'MTs Nuurul Hudaa' => 'MTs Nuurul Hudaa',
+                            'MA Nuurul Hudaa' => 'MA Nuurul Hudaa',
+                        ])
+                        ->native(false),
             ]);
     }
 
@@ -42,13 +58,25 @@ class ContactResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nama')
+                        ->label('Name')
+                        ->searchable(),
+
+                Tables\Columns\TextColumn::make('no_telp')
+                        ->label('No Hp'),
+
+                Tables\Columns\TextColumn::make('bagian')
+                        ->label('Penanggung Jawab'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]) 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -15,8 +15,15 @@ return new class extends Migration
             $table->bigIncrements('id_rekening');
             $table->string('nama');
             $table->string('no_rek', 20);
-            $table->string('bank');
+            $table->string('code');
+            $table->unsignedBigInteger('bank_id');
             $table->timestamps();
+
+            $table->foreign('bank_id')
+                ->references('code')
+                ->on('bank')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
