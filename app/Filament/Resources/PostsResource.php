@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Illuminate\Support\Str;
 
 class PostsResource extends Resource
 {
@@ -32,38 +34,58 @@ class PostsResource extends Resource
         return 'Management'; // Group in the sidebar
     }
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark';
+    protected static ?string $navigationIcon = 'heroicon-o-document-chart-bar';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('judul')
-                        ->label('Judul')
-                        ->required()
-                        ->maxLength(255),
+                    ->label('Judul')
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        $set('slug', Str::slug($state));
+                    })
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('slug')
+                    ->label('Slug')
+                    ->required(),
 
                 Forms\Components\TextInput::make('desc')
-                        ->label('Deskripsi Singkat')
-                        ->required()
-                        ->maxLength(255),
-
-                SpatieMediaLibraryFileUpload::make('content'),
+                    ->label('Deskripsi Singkat')
+                    ->required()
+                    ->maxLength(255),
 
                 RichEditor::make('content')
                     ->label('Content'),
-
+                        
+                SpatieMediaLibraryFileUpload::make('thumbnail')
+                    ->collection('thumbnail')
+                    ->label('Thumbnail')
+                    ->required(),
+                        
                 Forms\Components\Select::make('id')
                     ->label('Author')
                     ->relationship('user','name')
                     ->native(false),
-            ]);
+
+                Forms\Components\Toggle::make('published')
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                SpatieMediaLibraryImageColumn::make('thumbnail')
+                    ->collection('thumbnail')
+                    ->label('Thumbnail')
+                    ->width(200)
+                    ->height(200),
+
                 Tables\Columns\TextColumn::make('judul')
                         ->label('Title')
                         ->searchable(),
@@ -71,8 +93,9 @@ class PostsResource extends Resource
                 Tables\Columns\TextColumn::make('desc')
                         ->label('Description'),
 
-                Tables\Columns\TextColumn::make('id')
+                Tables\Columns\TextColumn::make('user.name')
                         ->label('Author'),
+                
             ])
             ->filters([
                 //

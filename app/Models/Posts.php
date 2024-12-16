@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
+
 class Posts extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
@@ -16,20 +17,31 @@ class Posts extends Model implements HasMedia
     public $incrementing = true;
 
     protected $fillable = [
+        'thumbnail',
         'judul',
         'desc',
         'content',
+        'slug',
+        'published',
         'id', 
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('thumbnail')
+            ->singleFile(); 
+    }
+
+    protected $casts = [ 'published' => 'boolean',];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'id', 'id');  
     }
 
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('images') 
-             ->useDisk('public');
-    }
+    // public function registerMediaCollections(): void
+    // {
+    //     $this->addMediaCollection('images') 
+    //          ->useDisk('public');
+    // }
 }

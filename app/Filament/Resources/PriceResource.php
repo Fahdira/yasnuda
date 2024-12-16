@@ -12,9 +12,11 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Clusters\Information;
 
 class PriceResource extends Resource
 {
+    protected static ?string $cluster = Information::class;
 
     public static function getNavigationSort(): ?int
     {
@@ -26,12 +28,7 @@ class PriceResource extends Resource
         return 'Informasi Biaya'; // Custom title for the sidebar
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Management'; // Group in the sidebar
-    }
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
     public static function form(Form $form): Form
     {

@@ -16,4 +16,6 @@ class ListRekenings extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected static ?string $title = 'Rekening';
 }

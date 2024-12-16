@@ -12,9 +12,12 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Clusters\Information;
 
 class ContactResource extends Resource
 {
+    protected static ?string $cluster = Information::class;
+
     public static function getNavigationSort(): ?int
     {
         return 5; // The lower the number, the higher it appears in the sidebar
@@ -25,12 +28,7 @@ class ContactResource extends Resource
         return 'Contact'; // Custom title for the sidebar
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Management'; // Group in the sidebar
-    }
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {

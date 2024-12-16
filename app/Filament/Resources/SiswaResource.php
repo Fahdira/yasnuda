@@ -25,7 +25,7 @@ class SiswaResource extends Resource
         return 'Pendaftar'; // Group in the sidebar
     }
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
 
     public static function form(Form $form): Form
     {

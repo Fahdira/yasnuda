@@ -25,7 +25,7 @@ class GuestResource extends Resource
         return 'Pendaftar'; // Group in the sidebar
     }
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-plus';
 
     public static function form(Form $form): Form
     {

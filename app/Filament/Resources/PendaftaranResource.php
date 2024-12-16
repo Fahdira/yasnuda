@@ -30,7 +30,7 @@ class PendaftaranResource extends Resource
         return 'Management'; // Group in the sidebar
     }
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
     public static function form(Form $form): Form
     {

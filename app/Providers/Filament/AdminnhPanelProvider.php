@@ -23,15 +23,18 @@ class AdminnhPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->sidebarCollapsibleOnDesktop()
             ->default()
             ->id('adminnh')
             ->path('adminnh')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#0096AA',
             ])
+            ->favicon(url:'/images/logo/logo.png')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters') 
             ->pages([
                 Pages\Dashboard::class,
             ])
