@@ -10,4 +10,11 @@ class Price extends Model
     use HasFactory;
 
     protected $table = 'price';
+    protected $primaryKey = 'id_price';
+    public $incrementing = true;
+
+    protected $fillable = [
+        'instansi',
+        'harga',
+    ];
 }

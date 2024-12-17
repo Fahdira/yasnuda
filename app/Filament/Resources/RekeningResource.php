@@ -22,12 +22,12 @@ class RekeningResource extends Resource
 
     public static function getNavigationSort(): ?int
     {
-        return 3; // The lower the number, the higher it appears in the sidebar
+        return 3; 
     }
 
     public static function getNavigationLabel(): string
     {
-        return 'Informasi Rekening'; // Custom title for the sidebar
+        return 'Informasi Rekening'; 
     }
 
 

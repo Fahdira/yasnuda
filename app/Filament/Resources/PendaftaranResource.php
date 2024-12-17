@@ -12,17 +12,13 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Section;
 
 class PendaftaranResource extends Resource
 {
     public static function getNavigationSort(): ?int
     {
         return 4; // The lower the number, the higher it appears in the sidebar
-    }
-
-    public static function getNavigationLabel(): string
-    {
-        return 'Pendaftaran'; // Custom title for the sidebar
     }
 
     public static function getNavigationGroup(): ?string
@@ -36,7 +32,29 @@ class PendaftaranResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make('Buat Pendaftaran')
+                        ->schema([
+                            Forms\Components\TextInput::make('tahun')
+                                    ->label('Tahun Ajaran')
+                                    ->required(),
+
+                            Forms\Components\DatePicker::make('tgl_dibuka')
+                                    ->label('Tanggal Dibuka')  
+                                    ->required()
+                                    ->format('Y-m-d'), 
+
+                            Forms\Components\DatePicker::make('tgl_ditutup')
+                                    ->label('Tanggal Ditutup')  
+                                    ->required()
+                                    ->format('Y-m-d'), 
+                        ]),
+                
+                Section::make('Status Pendaftaran')
+                        ->schema([
+                            Forms\Components\Toggle::make('status')
+                                ->label('Dibuka / Ditutup'),
+                        ])
+                        ->columnSpanFull(), 
             ]);
     }
 
@@ -44,13 +62,34 @@ class PendaftaranResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('tahun')
+                        ->label('Tahun Ajaran'),
+
+                Tables\Columns\TextColumn::make('tgl_dibuka')
+                        ->label('Tanggal Dibuka')
+                        ->date($format = 'd.m.Y'),
+
+                Tables\Columns\TextColumn::make('tgl_ditutup')
+                        ->label('Tanggal Ditutup')
+                        ->date($format = 'd.m.Y'),
+
+                Tables\Columns\TextColumn::make('status')
+                        ->label('Status')
+                        ->formatStateUsing(function ($state) {
+                            return $state ? 'Dibuka' : 'Ditutup'; 
+                        })
+                        ->color(fn ($state) => $state ? 'success' : 'danger')
+                        ->weight('bold'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

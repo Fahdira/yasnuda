@@ -10,5 +10,6 @@ class Info extends Model
     use HasFactory;
 
     protected $table = 'info';
+    
 
 }

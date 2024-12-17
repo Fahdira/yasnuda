@@ -34,7 +34,20 @@ class PriceResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('instansi')
+                        ->label('Bagian')
+                        ->options([
+                            'MDTA Nuurul Hudaa' => 'MDTA Nuurul Hudaa',
+                            'MTs Nuurul Hudaa' => 'MTs Nuurul Hudaa',
+                            'MA Nuurul Hudaa' => 'MA Nuurul Hudaa',
+                        ])
+                        ->native(false),
+
+                Forms\Components\TextInput::make('harga')
+                        ->required()
+                        ->label('Biaya Pendaftaran')
+                        ->numeric()
+                        ->prefix('Rp.'),
             ]);
     }
 
@@ -42,13 +55,24 @@ class PriceResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('instansi')
+                        ->label('Instansi')
+                        ->searchable(),
+
+                Tables\Columns\TextColumn::make('harga')
+                        ->label('Biaya Pendaftaran')
+                        ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.'))
+                        ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]) 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

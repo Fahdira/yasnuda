@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('pendaftaran', function (Blueprint $table) {
             $table->bigIncrements('id_pendaftaran');
-            $table->integer('tahun');
-            $table->string('status');
+            $table->string('tahun');
+            $table->boolean('status');
+            $table->date('tgl_dibuka');
+            $table->date('tgl_ditutup');
             $table->timestamps();
         });
     }

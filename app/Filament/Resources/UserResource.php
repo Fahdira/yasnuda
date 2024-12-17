@@ -49,6 +49,7 @@ class UserResource extends Resource
 
                 Forms\Components\TextInput::make('no_telp')
                         ->label('No. Telepon')
+                        ->numeric()
                         ->prefix('+62'),
 
                 Forms\Components\Textarea::make('alamat')
