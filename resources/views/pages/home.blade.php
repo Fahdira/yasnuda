@@ -3,7 +3,7 @@
     <div class="container mx-auto text-center">
         <h1 class="text-4xl font-bold mb-4">Website Pendaftaran</h1>
         <p class="text-gray-600 mb-8">Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</p>
-        <a class="bg-teal-600 text-white px-6 py-3 rounded" href="#">Daftar Online</a>
+        <a class="bg-teal-600 text-white px-6 py-3 rounded" href="{{ route('register') }}">Daftar Online</a>
     </div>
     <div class="container mx-auto mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="bg-white shadow-md rounded-lg overflow-hidden">

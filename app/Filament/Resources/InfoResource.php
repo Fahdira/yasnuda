@@ -13,6 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Clusters\Information;
+use Filament\Forms\Components\RichEditor;
+use Illuminate\Support\Str;
+use Filament\Tables\Columns\TextColumn;
 
 class InfoResource extends Resource
 {
@@ -41,21 +44,47 @@ class InfoResource extends Resource
     {
         return $form
             ->schema([
-                //
-            ]);
+                Forms\Components\TextInput::make('judul')
+                    ->label('Judul')
+                    ->required(),
+
+                RichEditor::make('content')
+                    ->label('Content'),
+
+                Forms\Components\Toggle::make('status')
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('judul')
+                    ->label('Judul')
+                    ->searchable(),
+            
+                TextColumn::make('content')
+                    ->label('Content')
+                    ->formatStateUsing(fn ($state) => strip_tags(Str::limit($state, 100))) // Remove HTML tags and limit content
+                    ->tooltip(fn ($state) => strip_tags($state)), // Optional: Full content in tooltip
+
+                TextColumn::make('status')
+                    ->label('Status')
+                    ->formatStateUsing(function ($state) {
+                        return $state ? 'Dipublish' : 'Disembunyikan'; 
+                    })
+                    ->color(fn ($state) => $state ? 'success' : 'danger')
+                    ->weight('bold'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

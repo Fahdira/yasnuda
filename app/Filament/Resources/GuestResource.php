@@ -31,7 +31,25 @@ class GuestResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('email')
+                    ->label('Email')
+                    ->required(),
+
+                Forms\Components\TextInput::make('no_telp')
+                    ->label('No Hp')
+                    ->numeric()
+                    ->prefix('+62')
+                    ->required(),
+
+                Forms\Components\TextInput::make('username')
+                    ->label('Username')
+                    ->required(),
+
+                Forms\Components\TextInput::make('password')
+                    ->label('Password')
+                    ->password()
+                    ->revealable()
+                    ->required(),
             ]);
     }
 
@@ -39,7 +57,15 @@ class GuestResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('username')
+                    ->label('Username')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('email')
+                        ->label('Email'),
+
+                Tables\Columns\TextColumn::make('no_telp')
+                        ->label('No Hp'),
             ])
             ->filters([
                 //

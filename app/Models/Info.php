@@ -10,6 +10,14 @@ class Info extends Model
     use HasFactory;
 
     protected $table = 'info';
-    
+    protected $primaryKey = 'id_info';
+    public $incrementing = true;
 
+    protected $fillable = [
+        'judul',
+        'content',
+        'status',
+    ];
+
+    protected $casts = [ 'status' => 'boolean',];
 }

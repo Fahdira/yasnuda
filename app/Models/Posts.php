@@ -8,6 +8,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 
+
 class Posts extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
@@ -17,7 +18,6 @@ class Posts extends Model implements HasMedia
     public $incrementing = true;
 
     protected $fillable = [
-        'thumbnail',
         'judul',
         'desc',
         'content',
@@ -29,7 +29,7 @@ class Posts extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('thumbnail')
-            ->singleFile(); 
+             ->singleFile(); 
     }
 
     protected $casts = [ 'published' => 'boolean',];
