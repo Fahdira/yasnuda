@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,9 @@ Route::get('/', function () {
 });
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'store']);
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+
+Route::get('/home', [UserController::class, 'home'])->name('home');
+

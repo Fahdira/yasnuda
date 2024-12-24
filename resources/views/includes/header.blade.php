@@ -8,7 +8,7 @@
             <a class="text-gray-600" href="#">Beranda</a>
             <a class="text-gray-600" href="#">Informasi</a>
             <a class="text-gray-600" href="#">Kontak</a>
-            <a class="bg-teal-600 text-white px-4 py-2 rounded" href="#">Daftar</a>
+            <a class="bg-teal-600 text-white px-4 py-2 rounded" href="{{ route('register') }}">Daftar</a>
         </div>
     </div>
 </header>
