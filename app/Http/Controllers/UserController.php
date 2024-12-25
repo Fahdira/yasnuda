@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Posts;
 
 class UserController extends Controller
 {
     public function home(){
 
-        return view('pages.home');
+        $posts = Posts::orderBy('created_at', 'desc')
+                        ->with('user')
+                        ->take(3)
+                        ->get();
+        return view('pages.home', compact('posts'));
     }
 
     public function dashboard(){
