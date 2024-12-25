@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->unsignedbigInteger('NIK_siswa')->primary();
-            $table->string('NISN', 20)->unique();
+            $table->unsignedbigInteger('NISN', 20)->unique();
             $table->string('nama');
             $table->string('tmp_lhr');
             $table->date('tgl_lhr');
             $table->string('warga');
             $table->string('agama');
+            $table->string('jenis');
             $table->integer('anak_ke');
             $table->integer('dari_br');
             $table->string('asal_sklh');
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->string('daftar_pes');
             $table->string('infaq');
             $table->string('sumber');
-            $table->string('status');
+            $table->boolean('status');
             $table->boolean('status_bayar');
             $table->unsignedBigInteger('id_guest');
             $table->timestamps();

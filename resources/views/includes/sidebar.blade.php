@@ -15,6 +15,10 @@
             </i>
             Dashboard
            </a>
+           <a class="flex items-center p-2 text-white hover:bg-gray-700 rounded" href="{{ route('informasi') }}">
+            <i class="fas fa-file-alt mr-2"></i>
+            Informasi Pendaftaran
+           </a>
            <a class="flex items-center p-2 text-white hover:bg-gray-700 rounded" href="{{ route('profile') }}">
             <i class="fas fa-user mr-2">
             </i>

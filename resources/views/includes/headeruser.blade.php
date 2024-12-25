@@ -4,10 +4,15 @@
     </h1>
     <div class="flex items-center space-x-4">
      <span>
-      Email user
+        <b>
+            {{ $users->email }}
+        </b>
      </span>
-     <button class="bg-teal-500 text-white px-4 py-2 rounded">
+     <a class="bg-teal-500 text-white px-4 py-2 rounded" id="logout-btn" href="#">
       Logout
-     </button>
+     </a>
+     <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
+        @csrf
+    </form>
     </div>
    </div>

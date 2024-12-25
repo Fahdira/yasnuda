@@ -19,7 +19,7 @@
         Menunggu pemberitahuan status pendaftaran (Diterima / Tidak)
        </li>
        <li>
-        Jika diterima maka bisa mencetak Kartu Ujian
+        Jika diterima Informasi akan diberitahu oleh Admin
        </li>
       </ol>
      </div>
@@ -28,40 +28,23 @@
        Kontak Bantuan
       </h2>
       <ul class="space-y-2">
-       <li>
-        Anas Ma'ruf - 08132032xxxx (MTs)
-       </li>
-       <li>
-        Yasep Hendra - 08231746xxxx (MTs)
-       </li>
-       <li>
-        Fiqri - 08122298xxxx (SMA Plus)
-       </li>
-       <li>
-        Andri Wicahyono - 08529509xxxx (MAN)
-       </li>
-       <li>
-        Nursidik - 08531449xxxx (MAN)
-       </li>
+        @foreach ($contact as $con)
+            <li>
+                {{ $con->nama }} - {{ $con->no_telp }} ({{ $con->bagian }})
+            </li>
+        @endforeach
       </ul>
      </div>
      <div class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">
        No. Rekening Bank
       </h2>
-      <p>
-       Pendaftaran Santri Baru (PSB) Ponpes Darussalam Ciamis Tahun Pelajaran 2025/2026
-      </p>
       <ul class="space-y-2 mt-4">
-       <li>
-        MTS DARUSSALAM No BRIVA 70391102024xxxx
-       </li>
-       <li>
-        SMA DARUSSALAM No BRIVA 70391302024xxxx
-       </li>
-       <li>
-        MAN DARUSSALAM No BRIVA 70391202024xxxx
-       </li>
+        @foreach ($rek as $r)
+            <li>
+                {{ $r->nama }} - {{ $r->no_rek }} ({{ $r->bank->name }})
+            </li>
+        @endforeach
       </ul>
      </div>
      <div class="bg-white p-6 rounded shadow">
@@ -69,24 +52,37 @@
        Besar Biaya pendaftaran
       </h2>
       <ul class="space-y-2">
-       <li>
-        1. MTS Program Peminatan: RP.250.000
-       </li>
-       <li>
-        2. MTs Program Kelas Khusus (mumtaz): Rp.450.000
-       </li>
-       <li>
-        3. MAN/SMA: Rp.250.000
-       </li>
+        @foreach ($price as $p)
+            <li>
+                {{ $p->instansi }} : Rp. {{ $p->harga }} -,
+            </li>
+        @endforeach
       </ul>
      </div>
      <div class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">
        Siswa Terdaftar : 0
       </h2>
-      <button class="bg-teal-500 text-white px-4 py-2 rounded">
-       Daftar Sekarang
-      </button>
+      @if ($pend->status == 1)
+            <a class="bg-teal-500 text-white px-4 py-2 rounded" href="{{ route('daftar1') }}">
+                Daftar Sekarang
+            </a>
+        @elseif ($pend->status == 0)
+            <a disabled class="bg-gray-500 text-white px-4 py-2 rounded" href="#">
+                Pendaftaran Ditutup
+            </a>
+        @endif
      </div>
     </div>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: "Success!",
+                text: "Berhasil Login",
+                icon: "success",
+                timer: 2000,
+            });
+        </script>
+    @endif
 @stop

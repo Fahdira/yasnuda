@@ -1,5 +1,4 @@
 <html lang="en">
-
 @include('includes.head')
 
 <body class="font-sans">

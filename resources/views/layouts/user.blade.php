@@ -14,7 +14,7 @@
             </main>
             @include('includes.footer')
         </div>
-        <!-- Footer -->
+        @include('includes.scripts')
     </div>
 </body>
 </html>
