@@ -5,10 +5,11 @@
     <!-- Header -->
     @include('includes.header')
     <!-- Main Content -->
-    <main class="bg-gray-100 py-16 px-6">
+    <main class="bg-gray-100">
         @yield('content')
     </main>
     <!-- Footer -->
+    @include('includes.about')
     @include('includes.footer')
 </body>
 </html>

@@ -1,6 +1,7 @@
 @extends('layouts.user')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Daftar')
 @section('content')
-<div class="max-w-4xl mx-auto p-6">
+<div class="mx-auto ">
     <!-- Progress Bar -->
     <div class="flex items-center justify-center mb-8">
         <div class="flex items-center">
@@ -21,7 +22,9 @@
     </div>
 
     <!-- Form Title -->
-    <h1 class="text-2xl font-bold mb-6">Daftar Siswa Baru</h1>
+    <h1 class="text-2xl font-bold mb-6">
+        Daftar Siswa Baru
+    </h1>
 
     <!-- Form Container -->
     <div class="bg-white p-6 rounded-lg shadow-md">
@@ -51,10 +54,10 @@
                     <input id="desa" type="text" class="w-full p-2 border border-gray-300 rounded-md">
                 </div>
             </div>
-            <div class="flex justify-between">
-                <a type="button" class="bg-gray-500 text-white px-4 py-2 rounded-md" href="{{ route('dashboard') }}">Simpan & Kembali Ke Beranda</a>
-                <a type="button" class="bg-gray-700 text-white px-4 py-2 rounded-md" href="{{ route('daftar1') }}">Kembali Ke Tahap Sebelumnya</a>
-                <a type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-md" href="{{ route('daftar3') }}">Selanjutnya</a>
+            <div class="flex justify-end space-x-4">
+                <a type="button" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-md" href="{{ route('dashboard') }}">Simpan & Kembali Ke Beranda</a>
+                <a type="button" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md" href="{{ route('daftar1') }}">Kembali Ke Tahap Sebelumnya</a>
+                <a type="submit" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md" href="{{ route('daftar3') }}">Selanjutnya</a>
             </div>
         </form>
     </div>

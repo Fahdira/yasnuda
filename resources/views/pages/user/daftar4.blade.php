@@ -1,28 +1,33 @@
 @extends('layouts.user')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Daftar')
 @section('content')
-<div class="container mx-auto p-4">
-    <!-- Progress Steps -->
-    <div class="flex justify-center mb-8">
+<div class="container mx-auto">
+    <!-- Progress Bar -->
+    <div class="flex items-center justify-center mb-8">
         <div class="flex items-center">
-            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-teal-500 text-teal-500">1</div>
-            <div class="w-24 h-1 bg-teal-500"></div>
+            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-teal-500 text-teal-500 font-bold text-4xl">1</div>
+            <div class="w-32 h-1 bg-teal-500"></div>
         </div>
         <div class="flex items-center">
-            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-teal-500 text-teal-500">2</div>
-            <div class="w-24 h-1 bg-teal-500"></div>
+            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-teal-500 text-teal-500 font-bold text-4xl">2</div>
+            <div class="w-32 h-1 bg-teal-500"></div>
         </div>
         <div class="flex items-center">
-            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-teal-500 text-teal-500">3</div>
-            <div class="w-24 h-1 bg-teal-500"></div>
+            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-teal-500 text-teal-500 font-bold text-4xl">3</div>
+            <div class="w-32 h-1 bg-teal-500"></div>
         </div>
         <div class="flex items-center">
-            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-teal-500 text-teal-500">4</div>
+            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-teal-500 text-teal-500 font-bold text-4xl">4</div>
         </div>
     </div>
 
+    <!-- Form Title -->
+    <h1 class="text-2xl font-bold mb-6">
+        Daftar Siswa Baru
+    </h1>
+
     <!-- Form Section -->
     <div class="bg-white p-8 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-semibold mb-6">Daftar Siswa Baru</h2>
         <h3 class="text-xl font-semibold mb-4">Upload Data Siswa</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div>
@@ -51,9 +56,9 @@
             </div>
         </div>
         <div class="flex justify-end space-x-4">
-            <a class="bg-gray-500 text-white px-4 py-2 rounded" href="{{ route('dashboard') }}">Simpan & Kembali Ke Beranda</a>
-            <a class="bg-gray-700 text-white px-4 py-2 rounded" href="{{ route('daftar3') }}">Kembali Ke Tahap Sebelumnya</a>
-            <a class="bg-teal-500 text-white px-4 py-2 rounded" href="{{ route('siswa') }}">Simpan Data Siswa</a>
+            <a class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded" href="{{ route('dashboard') }}">Simpan & Kembali Ke Beranda</a>
+            <a class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded" href="{{ route('daftar3') }}">Kembali Ke Tahap Sebelumnya</a>
+            <a class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded" href="{{ route('siswa') }}">Simpan Data Siswa</a>
         </div>
     </div>
 </div>

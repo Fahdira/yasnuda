@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Login')
 @section('content')
     <div class="flex flex-col justify-center px-6 py-40 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">

@@ -5,10 +5,11 @@
             <span class="text-lg font-semibold">Yayasan Nuurul Hudaa Al-Isma'iliyyah</span>
         </div>
         <div class="flex items-center space-x-4">
-            <a class="text-gray-600" href="#">Beranda</a>
-            <a class="text-gray-600" href="#">Informasi</a>
-            <a class="text-gray-600" href="#">Kontak</a>
-            <a class="bg-teal-600 text-white px-4 py-2 rounded" href="{{ route('register') }}">Daftar</a>
+            <a class="text-gray-600 hover:text-gray-800" href="{{ route('home') }}"">Beranda</a>
+            <a class="text-gray-600 hover:text-gray-800" href="{{ route('blog') }}">Blog</a>
+            <a class="text-gray-600 hover:text-gray-800" href="#">Informasi</a>
+            <a class="text-gray-600 hover:text-gray-800" href="#">Kontak</a>
+            <a class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded" href="{{ route('register') }}">Daftar</a>
         </div>
     </div>
 </header>
