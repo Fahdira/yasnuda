@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="py-16 px-6">
+<div class="py-16">
     <div class="container mx-auto text-center">
         <h1 class="text-4xl font-bold mb-4">Yayasan Nuurul Hudaa Al-Isma'iliyyah</h1>
         <p class="text-gray-600 mb-8">Selamat datang di official  website Yasnuda, Daftar secara online dengan klik tombol dibawah</p>
