@@ -29,7 +29,6 @@ class UserController extends Controller
 
     public function dashboard(){
 
-<<<<<<< HEAD
         if(session()->has('users')){
             $users = Guest::where('email', session('users'))->first();
             $contact = Contact::All();
@@ -48,14 +47,10 @@ class UserController extends Controller
             return view('pages.informasi', compact('users','pend'));
         }
             return view('pages.auth.login')->with('session', 'Session telah habis, silahkan login kembali');
-=======
-        return view('pages.user.dashboard');
->>>>>>> 48e8a678e2303bcfae6a64f5950a9a49c768f074
     }
 
     public function profile(){
 
-<<<<<<< HEAD
         if(session()->has('users')){
             $users = Guest::where('email', session('users'))->first();
             return view('pages.profile', compact('users'));
@@ -88,14 +83,6 @@ class UserController extends Controller
         else {
             return redirect()->route('edit')->with('error','Form Harus Terisi');
         }
-=======
-        return view('pages.user.profile');
-    }
-
-    public function editprofile(){
-
-        return view('pages.user.editprofile');
->>>>>>> 48e8a678e2303bcfae6a64f5950a9a49c768f074
     }
 
     public function siswa(){
@@ -104,7 +91,6 @@ class UserController extends Controller
     }
 
     public function daftar1(){
-<<<<<<< HEAD
         if(session()->has('users')){
             $users = Guest::where('email', session('users'))->first();
             return view('pages.daftar1', compact('users'));
@@ -134,25 +120,6 @@ class UserController extends Controller
             return view('pages.daftar4', compact('users'));
         }
             return view('pages.auth.login')->with('session', 'Session telah habis, silahkan login kembali');
-=======
-
-        return view('pages.user.daftar1');
-    }
-
-    public function daftar2(){
-
-        return view('pages.user.daftar2');
-    }
-
-    public function daftar3(){
-
-        return view('pages.user.daftar3');
-    }
-
-    public function daftar4(){
-
-        return view('pages.user.daftar4');
->>>>>>> 48e8a678e2303bcfae6a64f5950a9a49c768f074
     }
 
 }
