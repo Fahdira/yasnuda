@@ -15,17 +15,12 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [UserController::class, 'home'])->name('home');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store']);
-
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/home', [UserController::class, 'home'])->name('home');
 
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
