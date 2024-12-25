@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Login')
 @section('content')
     <div method="POST" action="{{ route('register') }}" class="flex flex-col justify-center px-6 py-24 lg:px-8">
         @csrf
@@ -23,7 +24,10 @@
             </div>
             <div>
                 <label for="username" class="block text-sm/6 font-medium text-gray-900">No Telp</label>
-                <div class="mt-2">
+                <div class="mt-2 flex items-center">
+                    <span class="block w-auto rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 mr-2">
+                        +62
+                    </span>
                     <input type="text" name="username" id="username" autocomplete="username" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                 </div>
             </div>

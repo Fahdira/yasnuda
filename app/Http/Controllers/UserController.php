@@ -21,6 +21,11 @@ class UserController extends Controller
         return view('pages.profile');
     }
 
+    public function editprofile(){
+
+        return view('pages.editprofile');
+    }
+
     public function siswa(){
 
         return view('pages.siswa');

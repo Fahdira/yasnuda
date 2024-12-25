@@ -7,7 +7,7 @@
         <!-- Sidebar -->
         @include('includes.sidebar')
         <!-- Main Content -->
-        <div class="flex-1">
+        <div class="flex-1 flex flex-col min-h-screen">
             @include('includes.headeruser')
             <main class="flex-grow p-6">
                 @yield('content')

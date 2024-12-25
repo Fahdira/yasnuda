@@ -29,6 +29,7 @@ Route::get('/home', [UserController::class, 'home'])->name('home');
 
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+Route::get('/editprofile', [UserController::class, 'editprofile'])->name('editprofile');
 Route::get('/daftar1', [UserController::class, 'daftar1'])->name('daftar1');
 Route::get('/daftar2', [UserController::class, 'daftar2'])->name('daftar2');
 Route::get('/daftar3', [UserController::class, 'daftar3'])->name('daftar3');
