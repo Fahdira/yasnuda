@@ -27,3 +27,10 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/home', [UserController::class, 'home'])->name('home');
 
+Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+Route::get('/daftar1', [UserController::class, 'daftar1'])->name('daftar1');
+Route::get('/daftar2', [UserController::class, 'daftar2'])->name('daftar2');
+Route::get('/daftar3', [UserController::class, 'daftar3'])->name('daftar3');
+Route::get('/daftar4', [UserController::class, 'daftar4'])->name('daftar4');
+Route::get('/siswa', [UserController::class, 'siswa'])->name('siswa');
