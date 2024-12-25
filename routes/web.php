@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 |
 */
 Route::get('/', [UserController::class, 'home'])->name('home');
+Route::get('/blog', [UserController::class, 'blog'])->name('blog');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store']);
