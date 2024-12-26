@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Infolists\Infolist;
 
 class SiswaResource extends Resource
 {
@@ -39,18 +40,51 @@ class SiswaResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('NISN')
+                        ->label('NISN'),
+
+                Tables\Columns\TextColumn::make('nama')
+                        ->label('Nama')
+                        ->searchable(),
+
+                Tables\Columns\TextColumn::make('jenis')
+                        ->label('Jenis Kelamin'),
+
+                Tables\Columns\TextColumn::make('asal_sklh')
+                        ->label('Asal Sekolah'),
+
+                Tables\Columns\TextColumn::make('daftar_ke')
+                        ->label('Mendaftar Ke'),
+
+                Tables\Columns\TextColumn::make('daftar_pes')
+                        ->label('Mendaftar Pesantren'),
+
+                Tables\Columns\TextColumn::make('status')
+                        ->label('Status')
+                        ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]) 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                // ...
             ]);
     }
 

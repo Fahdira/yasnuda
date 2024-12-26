@@ -65,8 +65,8 @@ class InfoResource extends Resource
             
                 TextColumn::make('content')
                     ->label('Content')
-                    ->formatStateUsing(fn ($state) => strip_tags(Str::limit($state, 100))) // Remove HTML tags and limit content
-                    ->tooltip(fn ($state) => strip_tags($state)), // Optional: Full content in tooltip
+                    ->formatStateUsing(fn ($state) => strip_tags(Str::limit($state, 25))) 
+                    ->tooltip(fn ($state) => strip_tags($state)),
 
                 TextColumn::make('status')
                     ->label('Status')
