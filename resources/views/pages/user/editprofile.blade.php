@@ -1,8 +1,9 @@
 @extends('layouts.user')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Edit Profile')
 @section('content')
 <!-- Profile Form -->
      <h1 class="text-2xl font-bold mb-6">
-      Profile
+      Edit Profile
      </h1>
      <div class="bg-white p-8 rounded shadow-md">
       <form class="grid grid-cols-2 gap-4"  method="POST" action="{{ route('update') }}">

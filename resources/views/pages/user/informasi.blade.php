@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Informasi')
 @section('content')
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
      <div class="bg-white p-6 rounded shadow">
@@ -6,7 +7,7 @@
        Status Pendaftaran
       </h2>
         @if ($pend)
-            <p>Status Pendaftaran Tahun Ajaran {{ $pend->tahun }} : 
+            <p>Status Pendaftaran Tahun Ajaran {{ $pend->tahun }} :
                     <span class="{{ $pend->status == 1 ? 'text-green-500' : 'text-red-500' }}">
                         <b>{{ $pend->status == 1 ? 'Dibuka' : 'Ditutup' }}</b>
                     </span>
@@ -15,7 +16,7 @@
         @else
             <p class="text-gray-400">No Information Available</p>
         @endif
-      
+
     </div>
      <div class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">
@@ -34,8 +35,8 @@
       @else
         <p class="text-gray-400">No Information Available</p>
       @endif
-        
-      
+
+
      </div>
     </div>
 

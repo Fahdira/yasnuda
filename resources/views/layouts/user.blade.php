@@ -2,7 +2,7 @@
 
 @include('includes.head')
 
-<body class="bg-gray-100">
+<body class="bg-white">
     <div x-data="{ open: true }" class="flex min-h-screen md:flex">
         <!-- Sidebar -->
         @include('includes.sidebar')

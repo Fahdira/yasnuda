@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Dashboard')
 @section('content')
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
      <div class="bg-white p-6 rounded shadow">
@@ -27,7 +28,7 @@
       @else
         <p class="text-gray-400">No Information Available</p>
       @endif
-      
+
      </div>
      <div class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">
@@ -44,7 +45,7 @@
         @else
             <p class="text-gray-400">No Information Available</p>
         @endif
-      
+
      </div>
      <div class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">
@@ -79,7 +80,7 @@
         @else
             <p class="text-gray-400">No Information Available</p>
         @endif
-        
+
      </div>
     </div>
 

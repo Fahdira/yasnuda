@@ -5,7 +5,7 @@
     <!-- Header -->
     @include('includes.header')
     <!-- Main Content -->
-    <main class="bg-gray-100">
+    <main class="bg-white">
         @yield('content')
     </main>
     <!-- Footer -->
