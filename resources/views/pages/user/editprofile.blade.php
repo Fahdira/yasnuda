@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Edit Profile')
 @section('content')
 <!-- Profile Form -->
      <h1 class="text-2xl font-bold mb-6">

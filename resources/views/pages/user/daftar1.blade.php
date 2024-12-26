@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Daftar')
 @section('content')
 <div class="container mx-auto">
     <!-- Progress Bar -->
