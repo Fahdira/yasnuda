@@ -1,55 +1,54 @@
 @extends('layouts.auth')
-@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Login')
+@section('title', 'PPDB Online Yayasan Nuurul Hudaa | Register')
 @section('content')
-    <div class="flex flex-col justify-center px-6 py-8 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img class="mx-auto h-20 w-auto" src="{{ asset('images/logo/logo.png') }}" alt="">
-        <h2 class="mt-4 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Register</h2>
+<div class="container max-w-4xl mx-auto my-auto">
+    <h1 class="text-4xl font-light mb-8">Daftar Online</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="border p-8">
+            <h2 class="text-xl font-bold mb-4">Buat Akun</h2>
+            <form class="space-y-6" action="{{ route('store')}}" method="POST">
+                @csrf
+                <div class="mb-4">
+                    <input type="text" name="username" placeholder="Username" id="username" autocomplete="username" required class="block w-full rounded-sm bg-white px-3 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
+                <div class="mb-4">
+                    <input type="email" name="email" placeholder="Email" id="email" autocomplete="email" required class="block w-full rounded-sm bg-white px-3 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
+                <div class="mb-4">
+                    <input type="number" name="no_telp" placeholder="No. Telepon" id="no_telp" autocomplete="no_telp" required onclick="fillInput()" class="block w-full rounded-sm bg-white px-3 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
+                <div class="mb-4 flex space-x-4">
+                    <input type="password" name="password" id="password" autocomplete="current-password" required placeholder="Password" class="w-1/2 block rounded-sm bg-white px-3 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <input type="password" name="password_confirmation" id="password_confirmation" autocomplete="current-password" required placeholder="Ulangi Password" class="w-1/2 block rounded-sm bg-white px-3 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
+                <div class="mb-4">
+                    <button type="submit"  class="w-full bg-teal-500 hover:bg-teal-600 text-white p-2">Register</button>
+                </div>
+                <div class="text-center text-sm">
+                    <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900">Sudah Punya Akun?</a>
+                </div>
+            </form>
         </div>
-
-        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="{{ route('store')}}" method="POST">
-            @csrf
-            <div>
-                <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
-                <div class="mt-2">
-                    <input type="email" name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                </div>
-            </div>
-            <div>
-                <label for="username" class="block text-sm/6 font-medium text-gray-900">Username</label>
-                <div class="mt-2">
-                    <input type="text" name="username" id="username" autocomplete="username" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                </div>
-            </div>
-            <div>
-                <label for="no_telp" class="block text-sm/6 font-medium text-gray-900">No Telepon</label>
-                <div class="mt-2">
-                    <input type="number" name="no_telp" id="no_telp" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                </div>
-            </div>
-
-            <div>
-                <label for="pasword" class="block text-sm/6 font-medium text-gray-900">Password</label>
-                <div class="mt-2">
-                    <input type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                </div>
-            </div>
-            <div>
-                <label for="password_confirmation" class="block text-sm/6 font-medium text-gray-900">Konfirmasi Password</label>
-                <div class="mt-2">
-                    <input type="password" name="password_confirmation" id="password_confirmation" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                </div>
-            </div>
-            <div>
-                <button type="submit" class="flex w-full justify-center rounded-md bg-teal-500 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register</button>
-            </div>
-        </form>
-
-        <p class="mt-10 text-center text-sm/6 text-gray-500">
-            Sudah punya akun?
-            <a href="{{ route('login') }}" class="font-semibold text-teal-500 hover:text-teal-600">Login</a>
-        </p>
+        <div class="border p-8">
+            <h2 class="text-xl font-bold mb-4">Informasi Pendaftaran</h2>
+            <p class="mb-4">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem.</p>
+            <h3 class="text-lg font-bold mb-2">Kontak yang bisa dihubungi</h3>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,</p>
+        </div>
+        <div class="fixed bottom-4 right-4">
+            <a class="w-12 h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center" href="https://wa.link/21ittc">
+                <i class="fab fa-whatsapp text-2xl"></i>
+            </a>
         </div>
     </div>
+</div>
+
+<script>
+    function fillInput() {
+        const inputField = document.getElementById('no_telp');
+        if (!inputField.value) { // Only fill if the field is empty
+        inputField.value = "08"; // Default phone number
+        }
+    }
+</script>
 @stop

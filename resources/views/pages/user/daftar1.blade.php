@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('content')
-<div class="max-w-4xl mx-auto">
+<div class="container mx-auto">
     <!-- Progress Bar -->
     <div class="flex items-center mb-8">
         <div class="flex items-center text-teal-500">
@@ -24,7 +24,7 @@
     <h2 class="text-2xl font-semibold mb-6">Daftar Siswa Baru</h2>
     <form action="{{ route('store1') }}" method="POST" id="first-form">
         @csrf
-        <div class="bg-white p-8 rounded-lg shadow-lg">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
             <h3 class="text-xl font-semibold mb-4">Data Diri</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div>
@@ -78,18 +78,21 @@
                     </select>
                     <p class="mt-1 text-sm/6 text-gray-400">Pilih Jenis Kelamin Calon Siswa</p>
                 </div>
-                <div>
-                    <label class="block text-gray-700">Anak Ke</label>
-                    <input type="number" name="anak_ke" class="w-full border border-gray-300 p-2 rounded">
-                    <p class="mt-1 text-sm/6 text-gray-400">Masukkan Status anak ke berapa Calon Siswa</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-700">Anak Ke</label>
+                        <input type="number" name="anak_ke" class="w-full border border-gray-300 p-2 rounded">
+                        <p class="mt-1 text-sm/6 text-gray-400">Masukkan Status anak ke berapa Calon Siswa</p>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">Dari berapa Bersaudara</label>
+                        <input type="number" name="dari_br" class="w-full border border-gray-300 p-2 rounded">
+                        <p class="mt-1 text-sm/6 text-gray-400">Dari Berapa Bersaudara</p>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-gray-700">Dari berapa Bersaudara</label>
-                    <input type="number" name="dari_br" class="w-full border border-gray-300 p-2 rounded">
-                    <p class="mt-1 text-sm/6 text-gray-400">Dari Berapa Bersaudara</p>
                 </div>
-            </div>
-    
+
+
             <h3 class="text-xl font-semibold mb-4">Informasi Tambahan</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div>
@@ -135,7 +138,7 @@
                     <p class="mt-1 text-sm/6 text-gray-400">Silahkan diisi dengan jumlah infaq yang ingin diberikan</p>
                 </div>
             </div>
-    
+
             <div class="flex justify-end space-x-4">
                 <a class="bg-gray-400 text-white px-4 py-2 rounded" href="#" id="back-btn">Kembali Ke Beranda</a>
                 <a class="bg-teal-500 text-white px-4 py-2 rounded" href="#" id="first-btn">Selanjutnya</a>

@@ -1,28 +1,28 @@
 @extends('layouts.user')
 @section('title', 'PPDB Online Yayasan Nuurul Hudaa | Daftar')
 @section('content')
-<div class="mx-auto ">
+<div class="container mx-auto">
     <!-- Progress Bar -->
-    <div class="flex items-center justify-center mb-8">
-        <div class="flex items-center">
-            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-teal-500 text-teal-500 font-bold text-4xl">1</div>
-            <div class="w-32 h-1 bg-teal-500"></div>
+    <div class="flex items-center mb-8">
+        <div class="flex items-center text-teal-500">
+            <div class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-teal-500">1</div>
         </div>
-        <div class="flex items-center">
-            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-teal-500 text-teal-500 font-bold text-4xl">2</div>
-            <div class="w-32 h-1 bg-gray-300"></div>
+        <div class="flex-1 border-t-2 border-teal-500 mx-2"></div>
+        <div class="flex items-center text-teal-500">
+            <div class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-teal-500">2</div>
         </div>
-        <div class="flex items-center">
-            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-gray-300 text-gray-300 font-bold text-4xl">3</div>
-            <div class="w-32 h-1 bg-gray-300"></div>
+        <div class="flex-1 border-t-2 border-gray-300 mx-2"></div>
+        <div class="flex items-center text-gray-300">
+            <div class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300">3</div>
         </div>
-        <div class="flex items-center">
-            <div class="w-20 h-20 flex items-center justify-center rounded-full border-4 border-gray-300 text-gray-300 font-bold text-4xl">4</div>
+        <div class="flex-1 border-t-2 border-gray-300 mx-2"></div>
+        <div class="flex items-center text-gray-300">
+            <div class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300">4</div>
         </div>
     </div>
 
     <!-- Form Title -->
-    <h1 class="text-2xl font-bold mb-6">
+    <h1 class="text-2xl font-semibold mb-6">
         Daftar Siswa Baru
     </h1>
 

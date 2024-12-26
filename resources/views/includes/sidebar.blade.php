@@ -12,13 +12,13 @@
         <nav>
          <ul>
             <li class="mb-4">
-                <a class="{{ Route::is('dashboard') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route('dashboard') }}">
+                <a class="{{ Route::is('dashboard') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route('dashboard') }}">
                     <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
                 </a>
-                <a class="{{ Route::is('informasi') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route('informasi') }}">
+                <a class="{{ Route::is('informasi') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route('informasi') }}">
                     <i class="fas fa-file-alt mr-2"></i>Informasi Pendaftaran
                 </a>
-                <a class="{{ Route::is(['profile','edit']) ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route('profile') }}">
+                <a class="{{ Route::is(['profile','edit']) ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route('profile') }}">
                     <i class="fas fa-user mr-2"></i>Profile
                 </a>
             </li>
@@ -39,20 +39,20 @@
                             'Diperiksa' => 'daftar1',
                             'Diterima' => 'daftar1',
                         ];
-            
+
                         $modals = [
                             'Tahap 1' => 'regist-btn',
                             'Tahap 2' => 'regist-btn',
                             'Tahap 3' => 'regist-btn',
                             'Diperiksa' => '#',
-                            'Diterima' => '#', 
+                            'Diterima' => '#',
                         ];
-            
+
                         $rute = $rutes[$s->status] ?? null;
                         $modal = $modals[$s->status] ?? null;
                     @endphp
                     @if ($rute && $modal && !$displayed)
-                        <a class="{{ Route::is('daftar1') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route($rute) }}" id="{{ $modal }}">
+                        <a class="{{ Route::is('daftar1') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route($rute) }}" id="{{ $modal }}">
                             <i class="fas fa-plus mr-2"></i> Daftar Baru
                         </a>
                         @php
@@ -61,11 +61,11 @@
                     @endif
                 @endforeach
             @else
-                <a class="{{ Route::is('daftar1') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route('daftar1') }}">
+                <a class="{{ Route::is('daftar1') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route('daftar1') }}">
                     <i class="fas fa-plus mr-2"></i> Daftar Baru
                 </a>
             @endif
-       
+
 
             @foreach ($siswa as $s)
                 @php
@@ -74,12 +74,12 @@
                         'Tahap 2' => 'daftar3',
                         'Tahap 3' => 'daftar4',
                     ];
-            
+
                     $route = $routes[$s->status] ?? null;
                 @endphp
-            
+
                 @if ($route)
-                    <a class="{{ Route::is(['edit2','edit3','daftar4']) ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route($route) }}">
+                    <a class="{{ Route::is(['edit2','edit3','daftar4']) ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route($route) }}">
                         <i class="fas fa-user-graduate mr-2"></i>
                         {{ $s->nama }}
                     </a>
@@ -87,7 +87,7 @@
                         session(['id' => $s->NIK_siswa]);
                     @endphp
                 @else
-                    <a class="flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route('siswa', ['id' => $s->NISN]) }}">
+                    <a class="flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route('siswa', ['id' => $s->NISN]) }}">
                         <i class="fas fa-user-graduate mr-2"></i>
                         {{ $s->nama }}
                     </a>
