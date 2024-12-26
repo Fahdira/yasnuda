@@ -53,34 +53,34 @@
     @endif
 
     @if (session('error'))
-    <script>
-        Swal.fire({
-            title: "Error!",
-            text: "Email atau Password Salah.",
-            icon: "error",
-            timer: 2000,
-        });
-    </script>
+        <script>
+            Swal.fire({
+                title: "Error!",
+                text: "Email atau Password Salah.",
+                icon: "error",
+                timer: 2000,
+            });
+        </script>
     @endif
 
     @if (session('session'))
-    <script>
-        Swal.fire({
-            title: "Session Expired!",
-            text: "Session telah habis silahkan login kembali.",
-            icon: "error",
-            timer: 2000,
-        });
-    </script>
+        <script>
+            Swal.fire({
+                title: "Session Expired!",
+                text: "Session telah habis silahkan login kembali.",
+                icon: "error",
+                timer: 2000,
+            });
+        </script>
     @endif
 
     @if (session('logout'))
-    <script>
-        Swal.fire({
-            title: "Berhasil Logout",
-            icon: "success",
-            timer: 2000,
-        });
-    </script>
+        <script>
+            Swal.fire({
+                title: "Berhasil Logout",
+                icon: "success",
+                timer: 2000,
+            });
+        </script>
     @endif
 @stop

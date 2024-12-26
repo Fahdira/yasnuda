@@ -289,4 +289,17 @@
             </div>
         </div>
     </div>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                title: "Data Berhasil disimpan",
+                icon: "success",
+            });
+        </script>
+    @endif
 @stop

@@ -27,4 +27,10 @@ class Guest extends Model
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'id_guest', 'id_guest');
+    }
 }

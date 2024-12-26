@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('file', function (Blueprint $table) {
             $table->unsignedBigInteger('NIK_siswa')->primary();
+            $table->string('pas_foto');
             $table->string('akta');
             $table->string('kk');
             $table->string('ijasah');
+            $table->timestamps();
 
             $table->foreign('NIK_siswa')
                 ->references('NIK_siswa')

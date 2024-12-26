@@ -34,11 +34,44 @@ class Siswa extends Model
         'infaq',
         'status',
         'status_bayar',
+        'tahun_ajrn',
         'id_guest'
     ];
 
     protected $attributes = [
-        'status' => 0,
+        'status' => 'Tahap 1',
+        'keb_dis' => 'Tidak Ada',
+        'keb_khusus' => 'Tidak Ada',
         'status_bayar' => 0,
     ];
+
+    public function tahun()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'tahun_ajrn', 'id_pendaftaran');  
+    }
+
+    public function guest()
+    {
+        return $this->belongsTo(Guest::class, 'id_guest', 'id_guest');  
+    }
+
+    public function alamat()
+    {
+        return $this->hasOne(Alamat::class, 'NIK_siswa', 'NIK_siswa');  
+    }
+
+    public function ayah()
+    {
+        return $this->hasOne(Ayah::class, 'NIK_siswa', 'NIK_siswa');  
+    }
+
+    public function ibu()
+    {
+        return $this->hasOne(Ibu::class, 'NIK_siswa', 'NIK_siswa');  
+    }
+
+    public function file()
+    {
+        return $this->hasOne(File::class, 'NIK_siswa', 'NIK_siswa');  
+    }
 }

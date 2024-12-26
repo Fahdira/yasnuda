@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('tmp_lhr');
             $table->date('tgl_lhr');
             $table->string('ktp');
+            $table->timestamps();
 
             $table->foreign('NIK_siswa')
                 ->references('NIK_siswa')

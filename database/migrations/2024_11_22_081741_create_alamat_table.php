@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->string('kabupaten/kota');
             $table->string('provinsi');
+            $table->timestamps();
 
             $table->foreign('NIK_siswa')
                 ->references('NIK_siswa')

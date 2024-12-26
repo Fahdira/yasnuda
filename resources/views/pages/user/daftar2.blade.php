@@ -29,37 +29,57 @@
     <!-- Form Container -->
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-xl font-semibold mb-4">Detail Alamat</h2>
-        <form>
+        <form method="POST" action="{{ route('store2') }}" id="second-form">
+            @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="alamat">Alamat Lengkap</label>
-                <textarea id="alamat" class="w-full p-2 border border-gray-300 rounded-md" rows="4"></textarea>
+                <textarea id="alamat" name="alamat" class="w-full p-2 border border-gray-300 rounded-md uppercase" rows="4"></textarea>
+                <p class="mt-1 text-sm/6 text-gray-400">Masukkan alamat lengkap Contoh : Jln. Cipadang Km.12 Kp. Lampegan, RT 04/12</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 mb-2" for="provinsi">Provinsi</label>
-                    <input id="provinsi" type="text" class="w-full p-2 border border-gray-300 rounded-md">
+                    <input id="provinsi" name="provinsi" type="text" class="w-full p-2 border border-gray-300 rounded-md uppercase">
+                    <p class="mt-1 text-sm/6 text-gray-400">Pilih Provinsi</p>
                 </div>
                 <div>
                     <label class="block text-gray-700 mb-2" for="kabupaten">Kabupaten / Kota</label>
-                    <input id="kabupaten" type="text" class="w-full p-2 border border-gray-300 rounded-md">
+                    <input id="kabupaten" name="kabupaten/kota" type="text" class="w-full p-2 border border-gray-300 rounded-md uppercase">
+                    <p class="mt-1 text-sm/6 text-gray-400">Pilih Kabupaten/Kota</p>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 mb-2" for="kecamatan">Kecamatan</label>
-                    <input id="kecamatan" type="text" class="w-full p-2 border border-gray-300 rounded-md">
+                    <input id="kecamatan" name="kecamatan" type="text" class="w-full p-2 border border-gray-300 rounded-md uppercase">
+                    <p class="mt-1 text-sm/6 text-gray-400">Pilih Kecamatan</p>
                 </div>
                 <div>
                     <label class="block text-gray-700 mb-2" for="desa">Desa</label>
-                    <input id="desa" type="text" class="w-full p-2 border border-gray-300 rounded-md">
+                    <input id="desa" name="desa" type="text" class="w-full p-2 border border-gray-300 rounded-md uppercase">
+                    <p class="mt-1 text-sm/6 text-gray-400">Pilih Desa</p>
                 </div>
             </div>
             <div class="flex justify-end space-x-4">
-                <a type="button" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-md" href="{{ route('dashboard') }}">Simpan & Kembali Ke Beranda</a>
-                <a type="button" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md" href="{{ route('daftar1') }}">Kembali Ke Tahap Sebelumnya</a>
-                <a type="submit" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md" href="{{ route('daftar3') }}">Selanjutnya</a>
+                <a class="bg-gray-400 text-white px-4 py-2 rounded" href="#" id="back-btn">Kembali Ke Beranda</a>
+                <a class="bg-teal-500 text-white px-4 py-2 rounded" href="#" id="second-btn">Selanjutnya</a>
             </div>
         </form>
+        <form method="GET" id="back-form" action="{{ route('dashboard') }}" style="display:none;"></form>
     </div>
 </div>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                title: "Data Berhasil disimpan",
+                icon: "success",
+            });
+        </script>
+    @endif
 @stop

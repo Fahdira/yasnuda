@@ -27,15 +27,15 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 Route::get('/informasi', [UserController::class, 'informasi'])->name('informasi');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-<<<<<<< HEAD
 Route::get('/edit', [UserController::class, 'edit'])->name('edit');
 Route::post('/update', [UserController::class, 'update'])->name('update');
 
-=======
-Route::get('/editprofile', [UserController::class, 'editprofile'])->name('editprofile');
->>>>>>> 48e8a678e2303bcfae6a64f5950a9a49c768f074
 Route::get('/daftar1', [UserController::class, 'daftar1'])->name('daftar1');
+Route::post('/store1', [UserController::class, 'store1'])->name('store1');
 Route::get('/daftar2', [UserController::class, 'daftar2'])->name('daftar2');
+Route::post('/store2', [UserController::class, 'store2'])->name('store2');
 Route::get('/daftar3', [UserController::class, 'daftar3'])->name('daftar3');
+Route::post('/store3', [UserController::class, 'store3'])->name('store3');
 Route::get('/daftar4', [UserController::class, 'daftar4'])->name('daftar4');
+Route::post('/store4', [UserController::class, 'store4'])->name('store4');
 Route::get('/siswa', [UserController::class, 'siswa'])->name('siswa');

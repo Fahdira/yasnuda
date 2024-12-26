@@ -27,39 +27,71 @@
     </h1>
 
     <!-- Form Section -->
-    <div class="bg-white p-8 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold mb-4">Upload Data Siswa</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div>
-                <label class="block text-gray-700 mb-2">Upload File Akta Lahir Siswa</label>
-                <div class="border-2 border-gray-300 border-dashed rounded-lg p-4 flex items-center justify-center">
-                    <i class="fas fa-upload text-gray-400 text-2xl"></i>
+    <form action="{{ route('store4') }}" method="POST" id="forth-form" enctype="multipart/form-data">
+        @csrf
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4">Upload Data Siswa</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block mb-2">Upload Akta Kelahiran</label>
+                    <div class="flex items-center justify-center w-full h-20 border border-gray-300 rounded">
+                        <i class="fas fa-upload text-gray-400 mx-2"></i>
+                        <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-teal-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-teal-600">
+                            <input class="w-full file:bg-teal-500 file:text-white file:border-0 file:rounded" id="file-upload" name="akta" type="file">
+                        </label>
+                    </div>
+                    <p class="mt-1 text-sm/6 text-gray-400">Silahkan Upload File Akta Kelahiran Calon Siswa *Format didukung : PDF, JPG, PNG, JPEG Maks 10 MB</p>
+                </div>
+                <div>
+                    <label class="block mb-2">Upload Kartu Keluarga</label>
+                    <div class="flex items-center justify-center w-full h-20 border border-gray-300 rounded">
+                        <i class="fas fa-upload text-gray-400 mx-2"></i>
+                        <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-teal-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-teal-600">
+                            <input class="w-full file:bg-teal-500 file:text-white file:border-0 file:rounded" id="file-upload" name="kk" type="file">
+                        </label>
+                    </div>
+                    <p class="mt-1 text-sm/6 text-gray-400">Silahkan Upload File Kartu Keluarga Calon Siswa *Format didukung : PDF, JPG, PNG, JPEG Maks 10 MB</p>
+                </div>
+                <div>
+                    <label class="block mb-2">Upload Ijasah Terakhir</label>
+                    <div class="flex items-center justify-center w-full h-20 border border-gray-300 rounded">
+                        <i class="fas fa-upload text-gray-400 mx-2"></i>
+                        <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-teal-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-teal-600">
+                            <input class="w-full file:bg-teal-500 file:text-white file:border-0 file:rounded" id="file-upload" name="ijasah" type="file">
+                        </label>
+                    </div>
+                    <p class="mt-1 text-sm/6 text-gray-400">Silahkan Upload File Ijasah Terakhir Calon Siswa *Format didukung : PDF, JPG, PNG, JPEG Maks 10 MB</p>
+                </div>
+                <div>
+                    <label class="block mb-2">Upload Pas Foto (3x4)</label>
+                    <div class="flex items-center justify-center w-full h-20 border border-gray-300 rounded">
+                        <i class="fas fa-upload text-gray-400 mx-2"></i>
+                        <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-teal-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-teal-600">
+                            <input class="w-full file:bg-teal-500 file:text-white file:border-0 file:rounded" id="file-upload" name="pas_foto" type="file">
+                        </label>
+                    </div>
+                    <p class="mt-1 text-sm/6 text-gray-400">Silahkan Upload File Pas Foto ukuran 3x4 Calon Siswa *Format didukung : PDF, JPG, PNG, JPEG Maks 10 MB</p>
                 </div>
             </div>
-            <div>
-                <label class="block text-gray-700 mb-2">Upload Pas Foto Siswa</label>
-                <div class="border-2 border-gray-300 border-dashed rounded-lg p-4 flex items-center justify-center">
-                    <i class="fas fa-upload text-gray-400 text-2xl"></i>
-                </div>
-            </div>
-            <div>
-                <label class="block text-gray-700 mb-2">Upload File Kartu Keluarga Siswa</label>
-                <div class="border-2 border-gray-300 border-dashed rounded-lg p-4 flex items-center justify-center">
-                    <i class="fas fa-upload text-gray-400 text-2xl"></i>
-                </div>
-            </div>
-            <div>
-                <label class="block text-gray-700 mb-2">Upload Ijasah Siswa</label>
-                <div class="border-2 border-gray-300 border-dashed rounded-lg p-4 flex items-center justify-center">
-                    <i class="fas fa-upload text-gray-400 text-2xl"></i>
-                </div>
+            <div class="flex justify-end space-x-4">
+                <a class="bg-gray-400 text-white px-4 py-2 rounded" href="#" id="back-btn">Kembali Ke Beranda</a>
+                <a class="bg-teal-500 text-white px-4 py-2 rounded" href="#" id="forth-btn">Simpan dan Kunci</a>
             </div>
         </div>
-        <div class="flex justify-end space-x-4">
-            <a class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded" href="{{ route('dashboard') }}">Simpan & Kembali Ke Beranda</a>
-            <a class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded" href="{{ route('daftar3') }}">Kembali Ke Tahap Sebelumnya</a>
-            <a class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded" href="{{ route('siswa') }}">Simpan Data Siswa</a>
-        </div>
-    </div>
+    </form>
+    <form method="GET" id="back-form" action="{{ route('dashboard') }}" style="display:none;"></form>
 </div>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                title: "Data Berhasil disimpan",
+                icon: "success",
+            });
+        </script>
+    @endif
 @stop
