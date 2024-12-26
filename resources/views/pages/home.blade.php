@@ -28,7 +28,7 @@
     </div>
     <div class="container mx-auto mt-16">
         <h2 class="text-2xl font-semibold text-center mb-8">Peta Lokasi</h2>
-        <iframe class="w-full" src="https://maps.app.goo.gl/GGg4HBuky9ePYpHf8" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="w-full" src="https://maps.app.goo.gl/GGg4HBuky9ePYpHf8" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
 @stop

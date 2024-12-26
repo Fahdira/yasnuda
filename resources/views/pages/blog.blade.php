@@ -11,8 +11,8 @@
         </p>
     </div>
 </div>
-<div class="container">
-    <div class="bg-white p-8 shadow-md mx-auto">
+<div class="container mx-auto">
+    <div class="bg-white p-8 mx-auto">
         <div class="max-w-[600px] mx-auto">
             <!-- Image Section -->
             <div class="flex justify-center mb-8">
