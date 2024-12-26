@@ -38,4 +38,4 @@ Route::get('/daftar3', [UserController::class, 'daftar3'])->name('daftar3');
 Route::post('/store3', [UserController::class, 'store3'])->name('store3');
 Route::get('/daftar4', [UserController::class, 'daftar4'])->name('daftar4');
 Route::post('/store4', [UserController::class, 'store4'])->name('store4');
-Route::get('/siswa', [UserController::class, 'siswa'])->name('siswa');
+Route::get('/siswa/{id}', [UserController::class, 'siswa'])->name('siswa');

@@ -26,7 +26,10 @@
            <span class="block text-gray-400 uppercase text-xs mb-2">
             Daftar
            </span>
-            @if ($siswa && $siswa->count() > 0)
+           @if ($siswa && $siswa->count() > 0)
+                @php
+                    $displayed = false; // Flag to track if "Daftar Baru" is shown
+                @endphp
                 @foreach ($siswa as $s)
                     @php
                         $rutes = [
@@ -36,7 +39,7 @@
                             'Diperiksa' => 'daftar1',
                             'Diterima' => 'daftar1',
                         ];
-
+            
                         $modals = [
                             'Tahap 1' => 'regist-btn',
                             'Tahap 2' => 'regist-btn',
@@ -44,14 +47,17 @@
                             'Diperiksa' => '#',
                             'Diterima' => '#', 
                         ];
-
+            
                         $rute = $rutes[$s->status] ?? null;
                         $modal = $modals[$s->status] ?? null;
                     @endphp
-                    @if ($rute && $modal)
+                    @if ($rute && $modal && !$displayed)
                         <a class="{{ Route::is('daftar1') ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route($rute) }}" id="{{ $modal }}">
                             <i class="fas fa-plus mr-2"></i> Daftar Baru
                         </a>
+                        @php
+                            $displayed = true; // Set the flag to true to prevent further rendering
+                        @endphp
                     @endif
                 @endforeach
             @else
@@ -59,6 +65,7 @@
                     <i class="fas fa-plus mr-2"></i> Daftar Baru
                 </a>
             @endif
+       
 
             @foreach ($siswa as $s)
                 @php
@@ -66,21 +73,24 @@
                         'Tahap 1' => 'daftar2',
                         'Tahap 2' => 'daftar3',
                         'Tahap 3' => 'daftar4',
-                        'Diperiksa' => 'siswa',
-                        'Diterima' => 'siswa',
                     ];
             
                     $route = $routes[$s->status] ?? null;
                 @endphp
             
                 @if ($route)
-                    <a class="{{ Route::is(['edit2','edit3','daftar4','siswa']) ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route($route) }}">
+                    <a class="{{ Route::is(['edit2','edit3','daftar4']) ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route($route) }}">
                         <i class="fas fa-user-graduate mr-2"></i>
                         {{ $s->nama }}
                     </a>
                     @php
                         session(['id' => $s->NIK_siswa]);
                     @endphp
+                @else
+                    <a class="flex items-center p-2 text-white hover:bg-teal-900 rounded" href="{{ route('siswa', ['id' => $s->NISN]) }}">
+                        <i class="fas fa-user-graduate mr-2"></i>
+                        {{ $s->nama }}
+                    </a>
                 @endif
             @endforeach
           </li>

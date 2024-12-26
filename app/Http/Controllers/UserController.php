@@ -97,11 +97,17 @@ class UserController extends Controller
         }
     }
 
-    public function siswa(){
+    public function siswa($id){
         if(session()->has('users')){
             $users = Guest::where('email', session('users'))->first();
             $siswa = Siswa::join('guest', 'siswa.id_guest', '=', 'guest.id_guest')->where('guest.email', session('users'))->get();
-            return view('pages.user.siswa', compact('users','siswa'));
+            $person = Siswa::where('NISN', $id)->first();
+            $alamat = Alamat::where('NIK_siswa', $person->NIK_siswa)->first();
+            $ayah = Ayah::where('NIK_siswa', $person->NIK_siswa)->first();
+            $ibu = Ibu::where('NIK_siswa', $person->NIK_siswa)->first();
+            $file = FileSiswa::where('NIK_siswa', $person->NIK_siswa)->first();
+
+            return view('pages.user.siswa', compact('users','siswa','person','alamat','ayah','ibu','file'));
         }
             return view('pages.auth.login')->with('session', 'Session telah habis, silahkan login kembali');
     }
@@ -258,7 +264,7 @@ class UserController extends Controller
     public function daftar4(){
         $id = session('id');
         $siswa = Siswa::find($id);
-        
+
         if(session()->has('users')){
             $users = Guest::where('email', session('users'))->first();
             $siswa = Siswa::join('guest', 'siswa.id_guest', '=', 'guest.id_guest')->where('guest.email', session('users'))->get();
@@ -310,7 +316,7 @@ class UserController extends Controller
             $siswa->status = 'Diperiksa';
             $siswa->update();
             $input->save();
-            return redirect()->route('siswa')->with('success', 'Data Telah telah disimpan');
+            return redirect()->route('dashboard')->with('success', 'Data Telah telah disimpan');
             } else {
                 return redirect()->route('daftar4')->with('error', 'Form Harus Terisi');
             }
