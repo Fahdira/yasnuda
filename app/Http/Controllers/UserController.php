@@ -31,8 +31,19 @@ class UserController extends Controller
 
     public function blog(){
 
-        return view('pages.blog');
+        $posts = Posts::orderBy('created_at', 'desc')
+                        ->with('user')
+                        ->get();
+        return view('pages.blog', compact('posts'));
     }
+
+    public function blog_isi($post)
+    {
+        $post = Posts::with('user')->where('slug', $post)->firstOrFail();
+        return view('pages.blog_isi', compact('post'));
+    }
+
+
 
     public function dashboard(){
 
@@ -153,7 +164,7 @@ class UserController extends Controller
         else {
             return redirect()->route('daftar1')->with('error','Form Harus Terisi');
         }
-        
+
     }
 
     public function daftar2(){
@@ -253,12 +264,12 @@ class UserController extends Controller
             $siswa->update();
             $input_ayah->save();
             $input_ibu->save();
-        
+
             return redirect()->route('daftar4')->with('success', 'Data Telah telah disimpan');
         } else {
             return redirect()->route('daftar3')->with('error', 'Form Harus Terisi');
         }
-        
+
     }
 
     public function daftar4(){

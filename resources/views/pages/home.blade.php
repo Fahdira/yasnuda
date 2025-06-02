@@ -28,7 +28,17 @@
     </div>
     <div class="container mx-auto mt-16">
         <h2 class="text-2xl font-semibold text-center mb-8">Peta Lokasi</h2>
-        <iframe class="w-full" src="https://maps.app.goo.gl/GGg4HBuky9ePYpHf8" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="flex justify-center">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.944398653029!2d107.63497627481875!3d-6.89725396749632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7bb3ecbe445%3A0xc603604dc4fa418!2sITENAS%20GD%202!5e0!3m2!1sen!2sid!4v1748445627908!5m2!1sen!2sid"
+                width="1460"
+                height="600"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+        </div>
     </div>
 </div>
 @stop

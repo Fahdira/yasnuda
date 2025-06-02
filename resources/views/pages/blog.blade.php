@@ -2,44 +2,40 @@
 @section('title', 'PPDB Online Yayasan Nuurul Hudaa | Blog')
 @section('content')
 <div class="bg-gray-200">
-    <div class="container mx-auto text-left py-28 px-44">
+    <div class="container mx-auto text-left py-14 px-44">
         <h1 class="text-5xl font-bold">
-            Judul
+            Blog
         </h1>
         <p class="text-lg text-gray-600">
-            Deskripsi Singkat
+            Daftar blog yang tersedia
         </p>
     </div>
 </div>
-<div class="container mx-auto">
-    <div class="bg-white p-8 mx-auto">
-        <div class="max-w-[600px] mx-auto">
-            <!-- Image Section -->
-            <div class="flex justify-center mb-8">
-                <img alt="Placeholder image" class="rounded-lg"
-                    src="https://storage.googleapis.com/a1aa/image/dSmpxz7f9m3mDqGfKk9VanWOCcfffGS1KTT6USv9lduuF2zfE.jpg"
-                    width="600" />
-            </div>
-            <!-- Text Section -->
-            <h2 class="text-2xl font-bold mb-4">
-                Title Head
-            </h2>
-            <p class="text-gray-700 mb-4">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-                Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-            <p class="text-gray-600 mb-2">
-                Ditulis Oleh : Username
-            </p>
-            <p class="text-gray-600">
-                19/20/2020
-            </p>
+<div class=" p-8">
+        <div class="container mx-auto mx mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 items-center">
+            @foreach ($posts as $post)
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <a href="{{ route('blog_isi', $post->slug) }}">
+                        <img
+                            alt="{{ $post->judul }}"
+                            class="w-full"
+                            src="{{ $post->getFirstMediaUrl('thumbnail', 'thumb') ?: 'https://placehold.co/300x200' }}"
+                            width="300"
+                            height="200"
+                        />
+                    </a>
+                    <div class="p-4">
+                        <h2 class="text-lg font-semibold mb-2">
+                            <a href="{{ route('blog_isi', $post->slug) }}" class="text-blue-600 hover:underline">
+                                {{ $post->judul }}
+                            </a>
+                        </h2>
+                        <p class="text-gray-600">{{ \Illuminate\Support\Str::limit($post->desc, 100) }}</p>
+                        <small class="text-gray-400">Published by : {{ $post->user->name }} on {{ $post->created_at }}</small>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
-</div>
 
 @stop
