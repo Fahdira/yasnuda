@@ -27,6 +27,8 @@ class GuestResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-plus';
 
+    protected static ?string $pluralModelLabel = 'Data User';
+
     public static function form(Form $form): Form
     {
         return $form

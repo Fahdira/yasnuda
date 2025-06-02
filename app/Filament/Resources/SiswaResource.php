@@ -28,6 +28,8 @@ class SiswaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
+    protected static ?string $pluralModelLabel = 'Data Siswa';
+
     public static function form(Form $form): Form
     {
         return $form

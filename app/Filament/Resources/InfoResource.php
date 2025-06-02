@@ -21,7 +21,7 @@ class InfoResource extends Resource
 {
     protected static ?string $cluster = Information::class;
 
-    protected static ?string $modelLabel = 'Regist';
+    protected static ?string $modelLabel = 'Registration';
 
     public static function getTitle(): string
     {

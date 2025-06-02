@@ -19,6 +19,8 @@ class UserResource extends Resource
 
     protected static ?string $navigationLabel = 'Accounts';
 
+    protected static ?string $pluralModelLabel = 'Akun Admin';
+
     protected static ?string $modelLabel = 'Administrator';
 
     protected static ?string $navigationIcon = 'heroicon-o-users';

@@ -36,6 +36,8 @@ class PostsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-chart-bar';
 
+    protected static ?string $pluralModelLabel = 'Blog';
+
     public static function form(Form $form): Form
     {
         return $form

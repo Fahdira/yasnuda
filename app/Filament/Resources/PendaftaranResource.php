@@ -28,6 +28,8 @@ class PendaftaranResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
+    protected static ?string $pluralModelLabel = 'Jadwal Pendaftaran';
+
     public static function form(Form $form): Form
     {
         return $form
