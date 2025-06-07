@@ -63,6 +63,9 @@ class PendaftaranResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->heading('Data Pendaftaran')
+            ->description('Dimohon untuk tidak mengubah atau menghapus data pendaftaran!, mengubah data pendaftaran hanya jika diperlukan atau ingin mengubah status pendaftaran')
+            ->emptyStateHeading('Tidak ada data')
             ->columns([
                 Tables\Columns\TextColumn::make('tahun')
                         ->label('Tahun Ajaran'),

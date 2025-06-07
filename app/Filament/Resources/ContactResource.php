@@ -20,7 +20,7 @@ class ContactResource extends Resource
 
     public static function getNavigationSort(): ?int
     {
-        return 5; // The lower the number, the higher it appears in the sidebar
+        return 3; // The lower the number, the higher it appears in the sidebar
     }
 
     protected static ?string $navigationLabel = 'Informasi Kontak';
@@ -28,6 +28,8 @@ class ContactResource extends Resource
     protected static ?string $modelLabel = 'Contact';
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $pluralModelLabel = 'Kontak';
 
     public static function form(Form $form): Form
     {
@@ -40,6 +42,7 @@ class ContactResource extends Resource
 
                 Forms\Components\TextInput::make('no_telp')
                         ->required()
+                        ->numeric()
                         ->label('No. Telepon')
                         ->prefix('+62'),
 
@@ -57,6 +60,7 @@ class ContactResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Tidak ada data')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                         ->label('Name')

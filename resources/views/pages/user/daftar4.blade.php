@@ -81,6 +81,28 @@
     </form>
     <form method="GET" id="back-form" action="{{ route('dashboard') }}" style="display:none;"></form>
 </div>
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                title: "Gagal Menyimpan!",
+                text: "Mohon isi semua form sebelum melanjutkan",
+                icon: "error",
+                timer: 3000,
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                title: "Gagal Menyimpan!",
+                text: "Mohon upload semua file sebelum melanjutkan",
+                icon: "error",
+                timer: 3000,
+            });
+        </script>
+    @endif
+
     @if (session('success'))
         <script>
             Swal.fire({

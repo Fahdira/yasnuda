@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Placeholder;
+use Illuminate\Support\HtmlString;
+use Filament\Forms\Components\Section;
 
 class GuestResource extends Resource
 {
@@ -33,31 +36,45 @@ class GuestResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('email')
-                    ->label('Email')
-                    ->required(),
-
-                Forms\Components\TextInput::make('no_telp')
-                    ->label('No Hp')
-                    ->numeric()
-                    ->prefix('+62')
-                    ->required(),
-
-                Forms\Components\TextInput::make('username')
-                    ->label('Username')
-                    ->required(),
-
-                Forms\Components\TextInput::make('password')
-                    ->label('Password')
-                    ->password()
-                    ->revealable()
-                    ->required(),
+                Section::make('Peringatan!')
+                ->schema([
+                    Placeholder::make('warning')
+                    ->label('Mohon baca sebelum mengubah/menambahkan data')
+                    ->content(fn ($record) => new HtmlString( '<span class="text-gray-500">Dikarenakan aplikasi menggunakan <i>password encyption</i> dimohon untuk memasukkan ulang password baru/lama</span>'))
+                    ->columns(1),
+                ]),
+                Section::make('Data Akun Pendaftar')
+                    ->schema([
+                    Forms\Components\TextInput::make('email')
+                        ->label('Email')
+                        ->required(),
+    
+                    Forms\Components\TextInput::make('no_telp')
+                        ->label('No Hp')
+                        ->numeric()
+                        ->prefix('+62')
+                        ->required(),
+    
+                    Forms\Components\TextInput::make('username')
+                        ->label('Username')
+                        ->required(),
+    
+                    Forms\Components\TextInput::make('password')
+                        ->label('Password')
+                        ->password()
+                        ->revealable()
+                        ->required(),
+                    ])
+                
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Tidak ada data')
+            ->heading('Akun Pendaftar')
+            ->description('Dimohon untuk tidak mengubah atau menghapus data user! mengubah data user diharuskan untuk mengisi ulang password')
             ->columns([
                 Tables\Columns\TextColumn::make('username')
                     ->label('Username')
@@ -73,7 +90,8 @@ class GuestResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -16,5 +16,6 @@ class Price extends Model
     protected $fillable = [
         'instansi',
         'harga',
+        'desc',
     ];
 }

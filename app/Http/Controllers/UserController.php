@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\Models\Posts;
 use App\Models\Guest;
 use App\Models\Rekening;
@@ -60,12 +61,33 @@ class UserController extends Controller
             return view('pages.auth.login')->with('session', 'Session telah habis, silahkan login kembali');
     }
 
+    public function payment($id){
+        if(session()->has('users')){
+            $users = Guest::where('email', session('users'))->first();
+            $contact = Contact::All();
+            $contact_mdta = Contact::where('bagian','MDTA NUURUL HUDAA')->first();
+            $contact_mts = Contact::where('bagian','MTS NUURUL HUDAA')->first();
+            $contact_ma = Contact::where('bagian','MA NUURUL HUDAA')->first();
+            $rek = Rekening::with('bank')->get();
+            $price = Price::All();
+            $sum_mdta = Price::where('instansi','MDTA NUURUL HUDAA')->sum('harga');
+            $sum_mts = Price::where('instansi','MTS NUURUL HUDAA')->sum('harga');
+            $sum_ma = Price::where('instansi','MA NUURUL HUDAA')->sum('harga');
+            $person = Siswa::where('NISN', $id)->first();
+            $siswa = Siswa::join('guest', 'siswa.id_guest', '=', 'guest.id_guest')->where('guest.email', session('users'))->get();
+            return view('pages.user.payment', compact('users','contact','rek','price','siswa','person','sum_mdta','sum_mts','sum_ma','contact_mdta','contact_mts','contact_ma'));
+        }
+            return view('pages.auth.login')->with('session', 'Session telah habis, silahkan login kembali');
+    }
+
     public  function informasi() {
         if(session()->has('users')){
             $users = Guest::where('email', session('users'))->first();
             $siswa = Siswa::join('guest', 'siswa.id_guest', '=', 'guest.id_guest')->where('guest.email', session('users'))->get();
             $pend = Pendaftaran::orderBy('created_at')->first();
-            return view('pages.user.informasi', compact('users','pend','siswa'));
+            $info = Info::where('status', 1)->first();
+            $price = Price::All();
+            return view('pages.user.informasi', compact('users','pend','siswa','info','price'));
         }
             return view('pages.auth.login')->with('session', 'Session telah habis, silahkan login kembali');
     }
@@ -157,9 +179,17 @@ class UserController extends Controller
                 'tahun_ajrn' =>$pendaftaran->id_pendaftaran,
                 'id_guest'=>$users->id_guest,
             ]);
-
-            $input->save();
-            return redirect()->route('daftar2')->with('success','Data Siswa telah disimpan');
+            $required = ['nama','NIK_siswa','NISN','asal_sklh','tmp_lhr','tgl_lhr','agama','warga','jenis','anak_ke','dari_br',
+                                            'daftar_ke','daftar_pes','sumber','infaq','tahun_ajrn','id_guest'];
+            $check_input = collect($required)->every(function ($key) use ($input) {
+                return !empty(data_get($input, $key));
+            });
+            if ($check_input) {
+                $input->save();
+                return redirect()->route('daftar2')->with('success','Data Siswa telah disimpan');
+            } else {
+                return redirect()->route('daftar1')->with('error','Form Harus Terisi');
+            }
         }
         else {
             return redirect()->route('daftar1')->with('error','Form Harus Terisi');
@@ -192,10 +222,18 @@ class UserController extends Controller
                 'NIK_siswa' => $id,
             ]);
 
-            $siswa->status = 'Tahap 2';
-            $siswa->update();
-            $input->save();
-            return redirect()->route('daftar3')->with('success','Data Alamat telah disimpan');
+            $required = ['alamat','desa','kecamatan','kabupaten/kota','provinsi','NIK_siswa'];
+            $check_input = collect($required)->every(function ($key) use ($input) {
+                return !empty(data_get($input, $key));
+            });
+            if ($check_input) {
+                $siswa->status = 'Tahap 2';
+                $siswa->update();
+                $input->save();
+                return redirect()->route('daftar3')->with('success','Data Alamat telah disimpan');
+            } else {
+                return redirect()->route('daftar2')->with('error','Form Harus Terisi');
+            }
         }
         else {
             return redirect()->route('daftar2')->with('error','Form Harus Terisi');
@@ -259,13 +297,27 @@ class UserController extends Controller
                     $file->move($destinationPath, $fileName);
                     $input_ibu['ktp'] = "$fileName";
                 }
+            $required_ibu = ['nama','NIK','pekerjaan','pendidikan','penghasilan','status','warga','agama','tmp_lhr','tgl_lhr','NIK_siswa'];
+            $required_ayah = ['nama','NIK','pekerjaan','pendidikan','penghasilan','status','warga','agama','tmp_lhr','tgl_lhr','NIK_siswa'];
+            $check_input_ibu = collect($required_ibu)->every(function ($key) use ($input_ibu) {
+                return !empty(data_get($input_ibu, $key));
+            });
+            $check_input_ayah = collect($required_ayah)->every(function ($key) use ($input_ayah) {
+                return !empty(data_get($input_ayah, $key));
+            });
 
-            $siswa->status = 'Tahap 3';
-            $siswa->update();
-            $input_ayah->save();
-            $input_ibu->save();
+            if ($check_input_ibu && $check_input_ayah) {
+                $siswa->status = 'Tahap 3';
+                $siswa->update();
+                $input_ayah->save();
+                $input_ibu->save();
 
-            return redirect()->route('daftar4')->with('success', 'Data Telah telah disimpan');
+                return redirect()->route('daftar4')->with('success', 'Data Telah telah disimpan');
+            } else {
+                return redirect()->route('daftar3')->with('error', 'Form Harus Terisi');
+            }
+
+            
         } else {
             return redirect()->route('daftar3')->with('error', 'Form Harus Terisi');
         }
@@ -324,10 +376,20 @@ class UserController extends Controller
                 $input['ijasah'] = "$fileName";
             }
 
-            $siswa->status = 'Diperiksa';
-            $siswa->update();
-            $input->save();
-            return redirect()->route('dashboard')->with('success', 'Data Telah telah disimpan');
+            $required = ['akta','pas_foto','kk','ijasah','NIK_siswa'];
+            $check_input = collect($required)->every(function ($key) use ($input) {
+                return !empty(data_get($input, $key));
+            });
+
+            if ($check_input) {
+                $siswa->status = 'Diperiksa';
+                $siswa->update();
+                $input->save();
+                return redirect()->route('dashboard')->with('success-daftar', 'Data Telah telah disimpan');
+            } else {
+                return redirect()->route('daftar4')->with('error', 'Form Harus Terisi');
+            }
+
             } else {
                 return redirect()->route('daftar4')->with('error', 'Form Harus Terisi');
             }

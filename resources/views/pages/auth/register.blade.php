@@ -5,7 +5,7 @@
     <h1 class="text-4xl font-light mb-8">Daftar Online</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="border p-8">
-            <h2 class="text-xl font-bold mb-4">Buat Akun</h2>
+            <h2 class="text-xl font-bold mb-4">Buat Akun Pendaftaran</h2>
             <form class="space-y-6" action="{{ route('store')}}" method="POST">
                 @csrf
                 <div class="mb-4">
@@ -31,9 +31,37 @@
         </div>
         <div class="border p-8">
             <h2 class="text-xl font-bold mb-4">Informasi Pendaftaran</h2>
-            <p class="mb-4">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem.</p>
-            <h3 class="text-lg font-bold mb-2">Kontak yang bisa dihubungi</h3>
-            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,</p>
+            @empty($info && $pendaftaran && $contact)
+                <p>Tidak ada data</p>
+            @endempty
+            @isset($pendaftaran)
+                @foreach ($pendaftaran as $pen)
+                    <li>Pendaftaran tahun <strong>{{ $pen->tahun }}</strong></li>
+                    @if ($pen->status == 1)
+                        <p class="ps-6">Status pendaftaran : <strong class="text-[#25D366]">Dibuka</strong></p>
+                    @elseif ($pen->status == 0)
+                        <p class="ps-6">Status pendaftaran : <strong class="text-rose-700">Ditutup</strong></p>
+                    @endif
+                    <p class="ps-6">Tanggal Dibuka : <strong>{{ \Carbon\Carbon::parse($pen->tgl_dibuka)->format('d M Y') }}</strong></p>
+                    <p class="ps-6">Tanggal Ditutup : <strong>{{ \Carbon\Carbon::parse($pen->tgl_ditutup)->format('d M Y') }}</strong></p>
+                @endforeach
+            @endisset
+            @isset($info)
+                @foreach ($info as $inf)
+                    <li>{{ $inf->judul }}</li>
+                    <div class="ps-6 pb-2">{!! $inf->content !!}</div>
+                @endforeach
+            @endisset
+            @isset($contact)
+                <h3 class="text-lg font-bold mb-2">Kontak yang bisa dihubungi</h3>
+                @foreach ($contact as $con)
+                    <li><strong>{{ $con->nama }}</strong> ({{ $con->bagian }})</li>
+                    <p class="ps-6">+62 {{ $con->no_telp }}<a class="text-[#25D366]" href="https://wa.me/62{{$con->no_telp}}"><i class="fab fa-whatsapp text-2l ps-2 pe-1"></i>Link Whatsapp</a></p>
+                @endforeach
+            @endisset
+            <div class="text-center text-sm pt-8">
+                <p class="text-gray-600 hover:text-gray-900">Jika tidak page tidak berubah saat melakukan pendaftaran, silahkan daftar ulang</p>
+            </div>
         </div>
         <div class="fixed bottom-4 right-4">
             <a class="w-12 h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center" href="https://wa.link/21ittc">

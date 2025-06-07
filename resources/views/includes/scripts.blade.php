@@ -1,5 +1,26 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('edit-profile').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default action
+            
+            Swal.fire({
+                title: 'Apakah anda yakin ingin mengedit profil?',
+                text: "Password wajib diganti bila ingin mengubah data profil",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('edit-form').submit();
+                }
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('logout-btn').addEventListener('click', function (event) {
             event.preventDefault(); // Prevent default action
             

@@ -22,7 +22,7 @@ class RekeningResource extends Resource
 
     public static function getNavigationSort(): ?int
     {
-        return 3; 
+        return 4; 
     }
 
     public static function getNavigationLabel(): string
@@ -44,6 +44,7 @@ class RekeningResource extends Resource
 
                 Forms\Components\TextInput::make('no_rek')
                         ->label('No Rekening')
+                        ->numeric()
                         ->required(),
                 
                 Forms\Components\Select::make('bank_id')
@@ -74,6 +75,7 @@ class RekeningResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Tidak ada data')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                         ->label('Nama')

@@ -72,6 +72,6 @@ class Siswa extends Model
 
     public function file()
     {
-        return $this->hasOne(File::class, 'NIK_siswa', 'NIK_siswa');  
+        return $this->hasOne(FileSiswa::class, 'NIK_siswa', 'NIK_siswa');  
     }
 }

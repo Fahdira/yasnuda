@@ -153,9 +153,9 @@
         <script>
             Swal.fire({
                 title: "Gagal Menyimpan!",
-                text: "Mohon isi cek semua form sebelum melanjutkan",
+                text: "Mohon isi semua form sebelum melanjutkan",
                 icon: "error",
-                timer: 2000,
+                timer: 3000,
             });
         </script>
     @endif
@@ -166,7 +166,7 @@
                 title: "Gagal Menyimpan!",
                 text: "Mohon isi semua form sebelum melanjutkan",
                 icon: "error",
-                timer: 2000,
+                timer: 3000,
             });
         </script>
     @endif

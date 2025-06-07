@@ -35,11 +35,10 @@
         <a class="bg-gray-700 text-white px-4 py-2 rounded mr-2" href="{{ route('dashboard') }}">
          Kembali
         </a>
-        <a class="bg-teal-500 text-white px-4 py-2 rounded" href="{{ route('edit') }}">
-         Edit Profile
-        </a>
+        <a class="bg-teal-500 text-white px-4 py-2 rounded" href="#" id="edit-profile">Edit Profile</a>
        </div>
       </form>
+      <form method="GET" id="edit-form" action="{{ route('edit') }}" style="display:none;"></form>
      </div>
 
      @if (session('success'))

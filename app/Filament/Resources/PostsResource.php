@@ -16,6 +16,9 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Support\Str;
+use Filament\Forms\Components\Placeholder;
+use Illuminate\Support\HtmlString;
+use Filament\Forms\Components\Section;
 
 class PostsResource extends Resource
 {
@@ -42,45 +45,57 @@ class PostsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('judul')
-                    ->label('Judul')
-                    ->reactive()
-                    ->afterStateUpdated(function ($state, callable $set) {
-                        $set('slug', Str::slug($state));
-                    })
-                    ->required()
-                    ->maxLength(255),
+                Section::make('Peringatan!')
+                ->schema([
+                    Placeholder::make('warning')
+                    ->label('Mohon baca sebelum mengubah/menambahkan data')
+                    ->content(fn ($record) => new HtmlString( '<span class="text-gray-500">Gunakan gambar berformat .png | .jpg, dengan rasio 1:1, maks 15MB.</span>'))
+                    ->columns(1),
+                ]),
+                Section::make('Form Posts')
+                    ->schema([
+                        Forms\Components\TextInput::make('judul')
+                            ->label('Judul')
+                            ->reactive()
+                            ->afterStateUpdated(function ($state, callable $set) {
+                                $set('slug', Str::slug($state));
+                            })
+                            ->required()
+                            ->maxLength(255),
 
-                Forms\Components\TextInput::make('slug')
-                    ->label('Slug')
-                    ->required(),
+                        Forms\Components\TextInput::make('slug')
+                            ->label('Slug')
+                            ->required(),
 
-                Forms\Components\TextInput::make('desc')
-                    ->label('Deskripsi Singkat')
-                    ->required()
-                    ->maxLength(255),
+                        Forms\Components\TextInput::make('desc')
+                            ->label('Deskripsi Singkat')
+                            ->required()
+                            ->maxLength(255),
 
-                RichEditor::make('content')
-                    ->label('Content'),
-                        
-                SpatieMediaLibraryFileUpload::make('thumbnail')
-                    ->collection('thumbnail')
-                    ->label('Thumbnail')
-                    ->required(),
-                        
-                Forms\Components\Select::make('id')
-                    ->label('Author')
-                    ->relationship('user','name')
-                    ->native(false),
+                        RichEditor::make('content')
+                            ->label('Content'),
+                                
+                        SpatieMediaLibraryFileUpload::make('thumbnail')
+                            ->collection('thumbnail')
+                            ->label('Thumbnail')
+                            ->required(),
+                                
+                        Forms\Components\Select::make('id')
+                            ->label('Author')
+                            ->relationship('user','name')
+                            ->native(false),
 
-                Forms\Components\Toggle::make('published')
-            ])
-            ->columns(1);
+                        Forms\Components\Toggle::make('published'),
+                    ]),
+                ]);
+                
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Tidak ada data')
+            ->description('Postingan hanya akan terlihat di beranda website jika status "dipublish"')
             ->columns([
                 SpatieMediaLibraryImageColumn::make('thumbnail')
                     ->collection('thumbnail')

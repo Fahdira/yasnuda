@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Placeholder;
+use Illuminate\Support\HtmlString;
+use Filament\Forms\Components\Section;
 
 class UserResource extends Resource
 {
@@ -29,7 +32,16 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Section::make('Peringatan!')
+                ->schema([
+                    Placeholder::make('warning')
+                    ->label('Mohon baca sebelum mengubah/menambahkan data')
+                    ->content(fn ($record) => new HtmlString( '<span class="text-gray-500">Dimohon untuk tidak mengubah data akun orang lain!</span>'))
+                    ->columns(1),
+                ]),
+                Section::make('Data Akun')
+                ->schema([
+                    Forms\Components\TextInput::make('name')
                         ->label('Username')
                         ->required()
                         ->maxLength(255),
@@ -69,12 +81,16 @@ class UserResource extends Resource
                         ->disabled(fn (string $operation) => $operation === 'edit')
                         ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
                         ->revealable(),
+                ])->columns(2),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->heading('Akun Admin')
+            ->description('Dimohon untuk tidak mengubah atau menghapus data admin! mengubah data admin diharuskan untuk mengisi ulang password')
+            ->emptyStateHeading('Tidak ada data')
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                         ->label('Username')

@@ -13,7 +13,7 @@ class ListGuests extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('Buat akun pendaftar')->Icon('heroicon-o-plus')
         ];
     }
 }

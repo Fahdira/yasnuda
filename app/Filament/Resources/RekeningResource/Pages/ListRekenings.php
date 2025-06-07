@@ -13,7 +13,7 @@ class ListRekenings extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('Tambah Rekening baru')->Icon('heroicon-o-plus')
         ];
     }
 

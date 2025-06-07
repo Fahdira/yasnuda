@@ -4,15 +4,24 @@
     <div class="container mx-auto">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-bold mb-6">
-                Data Pendaftaranmu : {{ $person->status }}
+                Status Pendaftaran : {{ $person->status }}
             </h1>
             <div>
-                <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded mr-2">
+                <!-- <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded mr-2">
                     Edit Data Siswa
                 </button>
                 <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
                     Hapus Data Siswa
-                </button>
+                </button> -->
+                @if ($person->status_bayar == 0)
+                    <a href="{{ route('payment',['id' => $person->NISN]) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                        Lanjutkan ke Pembayaran
+                    </a>
+                @else
+                    <a href="#" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded disable">
+                        Pembayaran Sudah Dilakukan
+                    </a>
+                @endif
             </div>
         </div>
         <div class="flex justify-center mb-8">
@@ -214,6 +223,16 @@
             </div>
         </div>
     </div>
+    @if (session('success-daftar'))
+        <script>
+            Swal.fire({
+                title: "Success!",
+                text: "Berhasil Mendaftar, Mohon cek data-data dan Lakukan Pembayaran",
+                icon: "success",
+                timer: 3000,
+            });
+        </script>
+    @endif
     @if (session('success'))
         <script>
             Swal.fire({

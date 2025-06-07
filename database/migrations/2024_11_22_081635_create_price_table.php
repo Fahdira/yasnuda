@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('price', function (Blueprint $table) {
             $table->bigIncrements('id_price');
             $table->string('instansi');
+            $table->string('desc');
             $table->string('harga');
             $table->timestamps();
         });

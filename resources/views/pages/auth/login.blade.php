@@ -2,10 +2,10 @@
 @section('title', 'PPDB Online Yayasan Nuurul Hudaa | Login')
 @section('content')
     <div class="max-w-4xl mx-auto my-auto">
-        <h1 class="text-4xl font-light mb-8">Selamat Datang</h1>
+        <h1 class="text-4xl font-light mb-8">Selamat Datang!</h1>
         <div class="border border-gray-300 p-8 flex flex-col md:flex-row items-center justify-between md:items-start">
             <div class="md:w-1/2 md:pr-8">
-                <h2 class="text-xl font-bold mb-4">Login</h2>
+                <h2 class="text-xl font-bold mb-4">Login Akun Pendaftaran</h2>
                 <form class="space-y-6" action="{{ route('postLogin') }}" method="POST">
                     @csrf
                     <div class="mb-4">
@@ -18,7 +18,6 @@
                         <button type="submit" class="w-full p-2 bg-teal-500 hover:bg-teal-600 text-white rounded">Masuk</button>
                     </div>
                     <div class="text-center">
-                        <a href="#" class="text-gray-600 hover:text-gray-900 block">Lupa Password</a>
                         <a href="{{ route('register') }}" class="text-gray-600 hover:text-gray-900 block">Daftar Akun Baru</a>
                     </div>
                 </form>

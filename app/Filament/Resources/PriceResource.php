@@ -38,11 +38,15 @@ class PriceResource extends Resource
                 Forms\Components\Select::make('instansi')
                         ->label('Bagian')
                         ->options([
-                            'MDTA Nuurul Hudaa' => 'MDTA Nuurul Hudaa',
-                            'MTs Nuurul Hudaa' => 'MTs Nuurul Hudaa',
-                            'MA Nuurul Hudaa' => 'MA Nuurul Hudaa',
+                            'MDTA NUURUL HUDAA' => 'MDTA NUURUL HUDAA',
+                            'MTS NUURUL HUDAA' => 'MTS NUURUL HUDAA',
+                            'MA NUURUL HUDAA' => 'MA NUURUL HUDAA',
                         ])
                         ->native(false),
+
+                Forms\Components\TextInput::make('desc')
+                        ->required()
+                        ->label('Detail'),
 
                 Forms\Components\TextInput::make('harga')
                         ->required()
@@ -55,9 +59,14 @@ class PriceResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Tidak ada data')
             ->columns([
                 Tables\Columns\TextColumn::make('instansi')
                         ->label('Instansi')
+                        ->searchable(),
+
+                Tables\Columns\TextColumn::make('desc')
+                        ->label('Detail')
                         ->searchable(),
 
                 Tables\Columns\TextColumn::make('harga')

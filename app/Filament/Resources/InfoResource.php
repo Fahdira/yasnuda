@@ -58,6 +58,7 @@ class InfoResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Tidak ada data')
             ->columns([
                 TextColumn::make('judul')
                     ->label('Judul')

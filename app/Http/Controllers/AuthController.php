@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Guest;
+use App\Models\Contact;
+use App\Models\Pendaftaran;
+use App\Models\Info;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
     public function register(){
-
-        return view('pages.auth.register');
+        $contact = Contact::All();
+        $pendaftaran = Pendaftaran::where('status', 1)->get();
+        $info = Info::where('status',1)->get();
+        return view('pages.auth.register',compact('contact','pendaftaran','info'));
     }
 
     public function store(Request $request){

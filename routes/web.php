@@ -30,6 +30,7 @@ Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard'
 Route::get('/informasi', [UserController::class, 'informasi'])->name('informasi');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::get('/edit', [UserController::class, 'edit'])->name('edit');
+Route::get('/payment/{id}', [UserController::class, 'payment'])->name('payment');
 Route::post('/update', [UserController::class, 'update'])->name('update');
 
 Route::get('/daftar1', [UserController::class, 'daftar1'])->name('daftar1');
