@@ -17,3 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/public/css/filament
+/public/css/filament
+/public/js/filament

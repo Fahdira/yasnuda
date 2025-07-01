@@ -70,10 +70,14 @@ class UserController extends Controller
             $contact_ma = Contact::where('bagian','MA NUURUL HUDAA')->first();
             $rek = Rekening::with('bank')->get();
             $price = Price::All();
-            $sum_mdta = Price::where('instansi','MDTA NUURUL HUDAA')->sum('harga');
-            $sum_mts = Price::where('instansi','MTS NUURUL HUDAA')->sum('harga');
-            $sum_ma = Price::where('instansi','MA NUURUL HUDAA')->sum('harga');
+            $sum_mdta_byr = Price::where('instansi','MDTA NUURUL HUDAA')->sum('harga');
+            $sum_mts_byr = Price::where('instansi','MTS NUURUL HUDAA')->sum('harga');
+            $sum_ma_byr = Price::where('instansi','MA NUURUL HUDAA')->sum('harga');
             $person = Siswa::where('NISN', $id)->first();
+            $infaq = $person->infaq;
+            $sum_mdta = $sum_mdta_byr+$infaq;
+            $sum_mts = $sum_mdta_byr+$infaq;
+            $sum_ma = $sum_mdta_byr+$infaq;
             $siswa = Siswa::join('guest', 'siswa.id_guest', '=', 'guest.id_guest')->where('guest.email', session('users'))->get();
             return view('pages.user.payment', compact('users','contact','rek','price','siswa','person','sum_mdta','sum_mts','sum_ma','contact_mdta','contact_mts','contact_ma'));
         }

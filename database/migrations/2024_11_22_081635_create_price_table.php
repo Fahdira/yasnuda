@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('instansi');
             $table->string('desc');
             $table->string('harga');
+            $table->string('jenis');
             $table->timestamps();
         });
     }

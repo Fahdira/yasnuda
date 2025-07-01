@@ -53,6 +53,17 @@ class PriceResource extends Resource
                         ->label('Biaya Pendaftaran')
                         ->numeric()
                         ->prefix('Rp.'),
+
+                Forms\Components\Select::make('jenis')
+                        ->label('Jenis Pembayaran')
+                        ->options([
+                            'Satu Kali Bayar' => 'Satu Kali Bayar',
+                            'Bayaran per Tahun' => 'Bayaran per Tahun',
+                            'Bayaran per 10 Bulan' => 'Bayaran per 10 Bulan',
+                            'Bayaran per 6 Bulan' => 'Bayaran per 6 Bulan',
+                            'Bayaran per 1 Bulan' => 'Bayaran per 1 Bulan',
+                        ])
+                        ->native(false),
             ]);
     }
 
@@ -68,6 +79,11 @@ class PriceResource extends Resource
                 Tables\Columns\TextColumn::make('desc')
                         ->label('Detail')
                         ->searchable(),
+                
+                Tables\Columns\TextColumn::make('jenis')
+                        ->label('Jenis Pembayaran')
+                        ->searchable()
+                        ->sortable(),
 
                 Tables\Columns\TextColumn::make('harga')
                         ->label('Biaya Pendaftaran')

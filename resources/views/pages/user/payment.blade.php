@@ -27,12 +27,18 @@
                             <tr>
                                 <td class="p-2">{{ $i }}</td>
                                 <td class="p-2">{{ $p->desc }}</td>
-                                <td class="p-2">{{ $p->instansi }}</td>
+                                <td class="p-2">{{ $p->jenis }}</td>
                                 <td class="p-2">Rp. {{ $p->harga }}-,</td>
                                 @php $i++ @endphp
                             </tr>
                             @endif
                         @endforeach
+                        <tr>
+                            <td class="p-2">#</td>
+                            <td class="p-2">Infaq Calon Santri</td>
+                            <td class="p-2"></td>
+                            <td class="p-2">Rp. {{ $person->infaq }}-,</td>
+                        </tr>
                     @endif
                     @if($person->daftar_ke == 'MTS NUURUL HUDAA')
                         @foreach($price as $p)
@@ -46,6 +52,12 @@
                             </tr>
                             @endif
                         @endforeach
+                        <tr>
+                            <td class="p-2">#</td>
+                            <td class="p-2">Infaq Calon Santri</td>
+                            <td class="p-2"></td>
+                            <td class="p-2">Rp. {{ $person->infaq }}-,</td>
+                        </tr>
                     @endif
                     @if($person->daftar_ke == 'MA NUURUL HUDAA')
                         @foreach($price as $p)
@@ -59,17 +71,23 @@
                             </tr>
                             @endif
                         @endforeach
+                        <tr>
+                            <td class="p-2">#</td>
+                            <td class="p-2">Infaq Calon Santri</td>
+                            <td class="p-2"></td>
+                            <td class="p-2">Rp. {{ $person->infaq }}-,</td>
+                        </tr>
                     @endif
                 </tbody>
             </table>
             @if($person->daftar_ke == 'MDTA NUURUL HUDAA')
-                <p class="text-right pt-4 text-xl">Total Pembayaran :<strong> {{ $sum_mdta }}</strong></p>
+                <p class="text-right pt-4 text-xl">Total Pembayaran : Rp. <strong> {{ $sum_mdta }}</strong>-,</p>
             @endif
             @if($person->daftar_ke == 'MTS NUURUL HUDAA')
-                <p class="text-right pt-4 text-xl">Total Pembayaran :<strong> {{ $sum_mts }}</strong></p>
+                <p class="text-right pt-4 text-xl">Total Pembayaran : Rp. <strong> {{ $sum_mts }}</strong>-,</p>
             @endif
             @if($person->daftar_ke == 'MA NUURUL HUDAA')
-                <p class="text-right pt-4 text-xl">Total Pembayaran :<strong> {{ $sum_ma }}</strong></p>
+                <p class="text-right pt-4 text-xl">Total Pembayaran :Rp. <strong> {{ $sum_ma }}</strong>-,</p>
             @endif
             <p class="text-gray-400 pt-4 text-right"><small>*Silahkan melakukan transfer sejumlah biaya diatas lalu konfirmasi kepada administrasi dengan mengirimkan bukti transfer</small></p>
             <div class="pt-4 flex justify-end space-x-4">
@@ -77,25 +95,31 @@
                     <a href="{{ route('dashboard') }}" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">
                         Kembali ke Beranda
                     </a>
-                    <a href="https://wa.me/62{{$contact_mdta->no_telp}}" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded">
-                        Hubungi Administrasi
-                    </a>
+                    @if ($contact_mdta)
+                        <a href="https://wa.me/62{{$contact_mdta->no_telp}}" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded">
+                            Hubungi Administrasi
+                        </a>
+                    @endif
                 @endif
                 @if($person->daftar_ke == 'MTS NUURUL HUDAA')
                     <a href="{{ route('dashboard') }}" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">
                         Kembali ke Beranda
                     </a>
-                    <a href="https://wa.me/62{{$contact_mts->no_telp}}" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded">
-                        Hubungi Administrasi
-                    </a>
+                    @if ($contact_mts)
+                        <a href="https://wa.me/62{{$contact_mts->no_telp}}" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded">
+                            Hubungi Administrasi
+                        </a>
+                    @endif
                 @endif
                 @if($person->daftar_ke == 'MA NUURUL HUDAA')
                     <a href="{{ route('dashboard') }}" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">
                         Kembali ke Beranda
                     </a>
-                    <a href="https://wa.me/62{{$contact_ma->no_telp}}" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded">
-                        Hubungi Administrasi
-                    </a>
+                    @if ($contact_ma)
+                        <a href="https://wa.me/62{{$contact_ma->no_telp}}" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded">
+                            Hubungi Administrasi
+                        </a>
+                    @endif
                 @endif
             </div>
         </div>

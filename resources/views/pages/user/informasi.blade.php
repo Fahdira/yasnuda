@@ -54,15 +54,30 @@
        MDTA NUURUL HUDAA
       </h2>
         @if ($price)
-            <ul class="space-y-2">
-                @foreach ($price as $p)
-                    @if ($p->instansi == 'MDTA NUURUL HUDAA')
-                        <li>
-                            {{ $p->desc }} : Rp. {{ $p->harga }} -,
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
+                <table class="table-auto border border-black text-sm">
+                    <thead>
+                        <tr>
+                            <th class="border border-black px-2 py-1 text-center">No</th>
+                            <th class="border border-black px-2 py-1 text-center">Detail</th>
+                            <th class="border border-black px-2 py-1 text-center">Jumlah</th>
+                            <th class="border border-black px-2 py-1 text-center">Jenis</th>
+                        </tr>
+                    </thead>
+                    @php $i = 1 @endphp
+                    @foreach ($price as $p)
+                        @if ($p->instansi == 'MDTA NUURUL HUDAA')
+                        <tbody>
+                            <tr>
+                                <td class="border border-black px-2 py-1 text-center">{{ $i }}</td>
+                                <td class="border border-black px-2 py-1">{{ $p->desc }}</td>
+                                <td class="border border-black px-2 py-1 text-center">Rp. {{ $p->harga }}-,</td>
+                                <td class="border border-black px-2 py-1 text-center">{{ $p->jenis }}</td>
+                                @php $i++ @endphp
+                            </tr>
+                        </tbody>
+                        @endif
+                    @endforeach
+                </table>
         @else
             <p class="text-gray-400">No Information Available</p>
         @endif
@@ -72,15 +87,30 @@
        MTS NUURUL HUDAA
       </h2>
         @if ($price)
-            <ul class="space-y-2">
-                @foreach ($price as $p)
-                    @if ($p->instansi == 'MTS NUURUL HUDAA')
-                        <li>
-                            {{ $p->desc }} : Rp. {{ $p->harga }} -,
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
+                <table class="table-auto border border-black text-sm">
+                    <thead>
+                        <tr>
+                            <th class="border border-black px-2 py-1 text-center">No</th>
+                            <th class="border border-black px-2 py-1 text-center">Detail</th>
+                            <th class="border border-black px-2 py-1 text-center">Jumlah</th>
+                            <th class="border border-black px-2 py-1 text-center">Jenis</th>
+                        </tr>
+                    </thead>
+                    @php $i = 1 @endphp
+                    @foreach ($price as $p)
+                        @if ($p->instansi == 'MTS NUURUL HUDAA')
+                        <tbody>
+                            <tr>
+                                <td class="border border-black px-2 py-1 text-center">{{ $i }}</td>
+                                <td class="border border-black px-2 py-1">{{ $p->desc }}</td>
+                                <td class="border border-black px-2 py-1 text-center">Rp. {{ $p->harga }}-,</td>
+                                <td class="border border-black px-2 py-1 text-center">{{ $p->jenis }}</td>
+                                @php $i++ @endphp
+                            </tr>
+                        </tbody>
+                        @endif
+                    @endforeach
+                </table>
         @else
             <p class="text-gray-400">No Information Available</p>
         @endif
@@ -90,15 +120,30 @@
        MA NUURUL HUDAA
       </h2>
         @if ($price)
-            <ul class="space-y-2">
-                @foreach ($price as $p)
-                    @if ($p->instansi == 'MA NUURUL HUDAA')
-                        <li>
-                            {{ $p->desc }} : Rp. {{ $p->harga }} -,
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
+                <table class="table-auto border border-black text-sm">
+                    <thead>
+                        <tr>
+                            <th class="border border-black px-2 py-1 text-center">No</th>
+                            <th class="border border-black px-2 py-1 text-center">Detail</th>
+                            <th class="border border-black px-2 py-1 text-center">Jumlah</th>
+                            <th class="border border-black px-2 py-1 text-center">Jenis</th>
+                        </tr>
+                    </thead>
+                    @php $i = 1 @endphp
+                    @foreach ($price as $p)
+                        @if ($p->instansi == 'MA NUURUL HUDAA')
+                        <tbody>
+                            <tr>
+                                <td class="border border-black px-2 py-1 text-center">{{ $i }}</td>
+                                <td class="border border-black px-2 py-1">{{ $p->desc }}</td>
+                                <td class="border border-black px-2 py-1 text-center">Rp. {{ $p->harga }}-,</td>
+                                <td class="border border-black px-2 py-1 text-center">{{ $p->jenis }}</td>
+                                @php $i++ @endphp
+                            </tr>
+                        </tbody>
+                        @endif
+                    @endforeach
+                </table>
         @else
             <p class="text-gray-400">No Information Available</p>
         @endif

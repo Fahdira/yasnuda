@@ -17,5 +17,6 @@ class Price extends Model
         'instansi',
         'harga',
         'desc',
+        'jenis',
     ];
 }
