@@ -20,6 +20,8 @@ use Filament\Forms\Components\View;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
 use Filament\Tables\Actions\ExportAction;
+use Filament\Actions\Exports\Enums\ExportFormat;
+use Filament\Tables\Actions\ExportBulkAction;
 use App\Filament\Exports\SiswaExporter;
 
 class SiswaResource extends Resource
@@ -409,12 +411,25 @@ class SiswaResource extends Resource
                 ]) 
             ])
             ->headerActions([
-                ExportAction::make()->exporter(SiswaExporter::class)
+                ExportAction::make()
+                    ->exporter(SiswaExporter::class)
+                    ->formats([
+                        ExportFormat::Xlsx,
+                    ])
+                    ->columnMapping(false)
+                    ->label('Export Semua Data Siswa')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
+                    ->exporter(SiswaExporter::class)
+                    ->formats([
+                        ExportFormat::Xlsx,
+                    ])
+                    ->columnMapping(false)
+                    ->label('Export Data Siswa Terpilih')
             ]);
     }
 
