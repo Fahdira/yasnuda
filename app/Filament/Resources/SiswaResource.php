@@ -19,6 +19,8 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\View;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
+use Filament\Tables\Actions\ExportAction;
+use App\Filament\Exports\SiswaExporter;
 
 class SiswaResource extends Resource
 {
@@ -405,6 +407,9 @@ class SiswaResource extends Resource
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
                 ]) 
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(SiswaExporter::class)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
