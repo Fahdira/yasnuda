@@ -60,7 +60,7 @@
                             <th class="border border-black px-2 py-1 text-center">No</th>
                             <th class="border border-black px-2 py-1 text-center">Detail</th>
                             <th class="border border-black px-2 py-1 text-center">Jumlah</th>
-                            <th class="border border-black px-2 py-1 text-center">Jenis</th>
+                            <th class="border border-black px-2 py-1 text-center">Kategori Pembayaran</th>
                         </tr>
                     </thead>
                     @php $i = 1 @endphp
@@ -93,7 +93,7 @@
                             <th class="border border-black px-2 py-1 text-center">No</th>
                             <th class="border border-black px-2 py-1 text-center">Detail</th>
                             <th class="border border-black px-2 py-1 text-center">Jumlah</th>
-                            <th class="border border-black px-2 py-1 text-center">Jenis</th>
+                            <th class="border border-black px-2 py-1 text-center">Kategori Pembayaran</th>
                         </tr>
                     </thead>
                     @php $i = 1 @endphp
@@ -126,7 +126,7 @@
                             <th class="border border-black px-2 py-1 text-center">No</th>
                             <th class="border border-black px-2 py-1 text-center">Detail</th>
                             <th class="border border-black px-2 py-1 text-center">Jumlah</th>
-                            <th class="border border-black px-2 py-1 text-center">Jenis</th>
+                            <th class="border border-black px-2 py-1 text-center">Kategori Pembayaran</th>
                         </tr>
                     </thead>
                     @php $i = 1 @endphp

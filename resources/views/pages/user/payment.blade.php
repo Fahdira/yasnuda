@@ -15,7 +15,7 @@
                     <tr>
                         <th class="p-2 border border-gray-200">No</th>
                         <th class="p-2 border border-gray-200">Detail</th>
-                        <th class="p-2 border border-gray-200">Instansi</th>
+                        <th class="p-2 border border-gray-200">Kategori Pembayaran</th>
                         <th class="p-2 border border-gray-200">Total</th>
                     </tr>
                 </thead>

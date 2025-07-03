@@ -392,8 +392,13 @@ class SiswaResource extends Resource
                 Tables\Columns\TextColumn::make('daftar_pes')
                         ->label('Mendaftar Pesantren'),
 
-                Tables\Columns\TextColumn::make('status_bayar')
+                Tables\Columns\BooleanColumn::make('status_bayar')
                         ->label('Status Pembayaran')
+                        ->trueIcon('heroicon-o-check-circle')
+                        ->falseIcon('heroicon-o-x-circle')
+                        ->trueColor('success')
+                        ->falseColor('danger')
+                        ->getStateUsing(fn ($record) => $record->status_bayar !== null)
                         ->sortable(),
 
                 Tables\Columns\TextColumn::make('status')

@@ -1,5 +1,5 @@
     <aside :class"{ '-translate-x-full' : !open }"
-        class="z-10 bg-gray-900 text-white w-64 p-4 absolute inset-y-0 left-0 md:relative -translate-x-full md:-translate-x-0 overflow-y-auto transition ease-in-out duration-200">
+        class="z-10 bg-gray-900 text-white w-80 p-4 absolute inset-y-0 left-0 md:relative -translate-x-full md:-translate-x-0 overflow-y-auto transition ease-in-out duration-200">
         <div class="flex items-center justify-between mb-6">
             <div class="flex-1 flex justify-center">
                 <img alt="School Logo" class="h-12 w-12" height="50" src="{{ asset('images/logo/logo.png') }}"
@@ -81,7 +81,7 @@
                 @if ($route)
                     <a class="{{ Route::is(['edit2','edit3','daftar4']) ? 'bg-teal-700' : '' }} flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route($route) }}">
                         <i class="fas fa-user-graduate mr-2"></i>
-                        {{ $s->nama }}
+                        {{ $s->nama }} ({{ $s->status }})
                     </a>
                     @php
                         session(['id' => $s->NIK_siswa]);
@@ -89,7 +89,12 @@
                 @else
                     <a class="flex items-center p-2 text-white hover:bg-teal-900 rounded mb-2" href="{{ route('siswa', ['id' => $s->NISN]) }}">
                         <i class="fas fa-user-graduate mr-2"></i>
-                        {{ $s->nama }}
+                        {{ $s->nama }} 
+                        @if($s->status_bayar==0)
+                            (Belum Bayar)
+                        @else
+
+                        @endif
                     </a>
                 @endif
             @endforeach
