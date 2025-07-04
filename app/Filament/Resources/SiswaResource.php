@@ -51,8 +51,16 @@ class SiswaResource extends Resource
             ->schema([
                 Placeholder::make('warning')
                     ->label('Mohon baca sebelum mengubah data')
-                    ->content(fn ($record) => new HtmlString( '<span class="text-gray-500">Jika ada data yang diubah mohon gunakan huruf kapital, untuk menyesuaikan format data pada Database!</span>'))
-                    ->columns(1),
+                    ->content(fn ($record) => new HtmlString( '<span class="text-gray-500">Jika ada data yang diubah mohon gunakan huruf kapital, untuk menyesuaikan format data pada Database!</span>')),
+                Placeholder::make('downloads')
+                    ->label('Download Semua Dokumen Siswa')
+                    ->content(fn ($record) => new HtmlString(
+                        '
+                        <a href="' . route('siswa.downloads', $record->NIK_siswa) . '" class="inline-block px-4 py-1 bg-primary-600 text-white text-sm rounded hover:bg-primary-700 transition">
+                            Download Semua
+                        </a>
+                        '
+                ))->columns(1),
                 Section::make('Akun Pendaftar')
                     ->relationship('guest')
                     ->disabled()

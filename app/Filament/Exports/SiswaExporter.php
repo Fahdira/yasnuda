@@ -99,7 +99,7 @@ class SiswaExporter extends Exporter
 
     public static function getCompletedNotificationBody(Export $export): string
     {
-        $body = 'Data siswa berhasil disimpan dengan ' . number_format($export->successful_rows) . ' ' . str('data')->plural($export->successful_rows) . ' tersimpan.';
+        $body = 'Data siswa tercatat dengan ' . number_format($export->successful_rows) . ' ' . str('data')->plural($export->successful_rows) . ' berhasil tersimpan.';
 
         if ($failedRowsCount = $export->getFailedRowsCount()) {
             $body .= ' ' . number_format($failedRowsCount) . ' ' . str('data')->plural($failedRowsCount) . ' gagal tersimpan.';

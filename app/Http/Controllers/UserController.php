@@ -18,6 +18,8 @@ use App\Models\Ibu;
 use App\Models\FileSiswa;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+use ZipArchive;
 
 class UserController extends Controller
 {
@@ -397,6 +399,54 @@ class UserController extends Controller
             } else {
                 return redirect()->route('daftar4')->with('error', 'Form Harus Terisi');
             }
+    }
+
+    public function downloads($id) {
+        $docs = FileSiswa::where('NIK_siswa', $id)->firstOrFail();
+        $ayah = Ayah::where('NIK_siswa', $id)->firstOrFail();
+        $ibu = Ibu::where('NIK_siswa', $id)->firstOrFail();
+        $siswa = Siswa::where('NIK_siswa', $id)->firstOrFail();
+
+        $files = [];
+
+        // Add any file fields here
+        if ($docs->kk) {
+            $files[] = public_path('global/data/kk/' . $docs->kk);
+        }
+        if ($docs->akta) {
+            $files[] = public_path('global/data/akta/' . $docs->akta);
+        }
+        if ($docs->ijasah) {
+            $files[] = public_path('global/data/ijasah/' . $docs->ijasah);
+        }
+        if ($docs->pas_foto) {
+            $files[] = public_path('global/data/foto/' . $docs->pas_foto);
+        }
+        if ($ayah->ktp) {
+            $files[] = public_path('global/data/ktp/' . $ayah->ktp);
+        }
+        if ($ibu->ktp) {
+            $files[] = public_path('global/data/ktp/' . $ibu->ktp);
+        }
+        if (empty($files)) {
+            abort(404, 'No files to download.');
+        }
+
+        $zip = new ZipArchive;
+        $zipFileName = 'Dokumen_Siswa_' . $siswa->nama . '.zip';
+        $zipPath = storage_path('app/public/' . $zipFileName);
+
+        if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
+            foreach ($files as $file) {
+                if (file_exists($file)) {
+                    $zip->addFile($file, basename($file));
+                }
+            }
+            $zip->close();
+        } else {
+            abort(500, 'Could not create ZIP archive.');
+        }
+        return response()->download($zipPath)->deleteFileAfterSend(true);
     }
 
 }
